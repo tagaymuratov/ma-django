@@ -1,0 +1,110 @@
+.login-form, .reg-form{
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background-color: #fff;
+
+  h1{
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  p{
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: .25rem;
+  }
+
+  input {
+    width: 100%;
+    padding: .5rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: .25rem;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #000;
+    }
+  }
+}
+
+.login-form{
+  max-width: 25rem;
+}
+
+.form-btn-main{
+  width: 100%;
+  display: block;
+  padding: .6rem 1rem;
+  border-radius: .25rem;
+  text-transform: uppercase;
+  text-align: center;
+  transition: background 0.2s;
+  font-size: .875rem;
+  transition: background-color 0.2s;
+  margin-top: 1.5rem;
+  background-color: #000;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.form-btn-sec{
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: .875rem;
+  text-align: center;
+  a{
+    color: #000;
+  }
+}
+
+.reg-form{
+  max-width: 50rem;
+}
+
+.form-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;;
+  column-gap: 1.5rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+}
+
+.errorList{
+  color: red;
+}
+
+.profile-form{
+  display: none;
+}
+
+.logout-form{
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background-color: #fff;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  p {
+    width: 100%;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}

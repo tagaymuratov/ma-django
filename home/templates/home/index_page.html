@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags%}
+{% block body_class %}{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/index_page.css' %}">
+{% endblock extra_css %}
+{% block content %}
+
+<section class="index-section">
+  <h1 class="index-title">{{ page.title }}</h1>
+
+  <div class="index-cards">
+  {% for post in posts %}
+    <a href="{% pageurl post %}" class="card">
+      {% image post.preview width-768 as preview %}
+      <img src="{{ preview.url }}" alt="{{ preview.alt }}">
+      <div>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.description }}</p>
+      </div>
+    </a>
+  {% endfor %}
+  </div>
+
+  {% if posts.paginator.num_pages > 1 %}
+    <nav class="pagination">
+      {% if posts.has_previous %}
+          <a href="?page={{ posts.previous_page_number }}">&laquo; Назад</a>
+      {% endif %}
+
+      <span class="current">
+          Страница {{ posts.number }} из {{ posts.paginator.num_pages }}
+      </span>
+
+      {% if posts.has_next %}
+          <a href="?page={{ posts.next_page_number }}">Вперед &raquo;</a>
+      {% endif %}
+    </nav>
+  {% endif %}
+</section>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/users.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+   
+<form action="{% url 'users:logout' %}" method="post" class="logout-form">
+    {% csrf_token %}
+    <h1>Здравствуйте, {{ user.first_name }} {{ user.last_name }}!</h1>
+    <p>Здесь будет ваш личный кабинет, сейчас он в разработке.</p>
+    <button type="submit" class="form-btn-main">Выйти из аккаунта</button>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<form method="post" id="ProfileForm" class="profile-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить изменения</button>
+</form>
+
+{% endblock %}

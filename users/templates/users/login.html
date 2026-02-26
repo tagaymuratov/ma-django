@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/users.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+<form method="post" id="LoginForm" class="login-form">
+    {% csrf_token %}
+    <h1>Вход</h1>
+    {{ form.as_p }}
+    
+    <button type="submit" class="form-btn-main">Войти</button>
+    <!--<a href="{% url 'users:login' %}" class="form-btn-main" >Войти</a>-->
+    <div class="form-btn-sec">Если у вас нет аккаунта <a href="{% url 'users:register' %}" class="txtlink">Зарегистрируйтесь</a></div>
+</form>
+
+{% endblock %}

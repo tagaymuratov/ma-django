@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/users.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<form method="post" id="CreateAccountForm" class="reg-form">
+    {% csrf_token %}
+    <h1>Регистрация</h1>
+
+    <div class="form-grid">{{ form.as_p }}</div>
+    <button type="submit" class="form-btn-main">Зарегистрироваться</button>
+    <!--<a href="{% url 'users:register' %}" class="form-btn-main" >Зарегистрироваться</a>-->
+    <div class="form-btn-sec"><a href="{% url 'users:login' %}" class="txtlink">У меня уже есть аккаунт</a></div>
+</form>
+
+{% endblock %}

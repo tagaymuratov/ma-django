@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags%}
+
+{% block body_class %}{% endblock %}
+{% block extra_css %}{% endblock extra_css %}
+{% block content %}
+<div class="hero">
+  {% image page.hero_image original as hero_img%}
+  <img src="{{ hero_img.url }}" alt="">
+
+  <div class="hero-content kzglass">
+    <h1>{{ page.hero_title }}</h1>
+    <p>{{ page.hero_subtitle }}</p>
+    {% if page.cta_link and page.cta_link.url %}
+    <a href="{{ page.cta_link.url }}" class="btn">{{ page.cta_text }}</a>
+    {% endif %}
+  </div>
+</div>
+
+<section>
+  <div class="home-section-top">
+    <h1>Последние новости</h1>
+    <a href="{{ news_link.url }}" class="txtlink">Больше новостей</a>
+  </div>
+
+  <div class="cards">
+    {% for item in news %}
+      <a href="{{ item.url }}" class="card">
+        {% image item.preview width-768 as preview %}
+        <img src="{{ preview.url }}" alt="{{ preview.alt }}">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <div class="home-section-top">
+    <h1>Мероприятия</h1>
+    <a href="{{ events_link.url }}" class="txtlink">Все мероприятия</a>
+  </div>
+
+  <div class="cards">
+    {% for item in events %}
+    <a href="{{ item.url }}" class="card">
+      {% image item.preview width-768 as preview %}
+      <img src="{{ preview.url }}" alt="{{ preview.alt }}">
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.description }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <div class="home-section-top">
+    <h1>Новые курсы</h1>
+    <a href="{{ courses_link.url }}" class="txtlink">Все курсы</a>
+  </div>
+
+  <div class="cards">
+    {% for item in courses %}
+    <a href="{{ item.url }}" class="card">
+      {% image item.preview width-768 as preview %}
+      <img src="{{ preview.url }}" alt="{{ preview.alt }}">
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.description }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section>
+  <div class="home-section-top">
+    <h1>Подкасты</h1>
+    <a href="{{ podcasts_link.url }}" class="txtlink">Больше подкастов</a>
+  </div>
+
+  <div class="cards">
+    {% for item in podcasts %}
+    <a href="{{ item.url }}" class="card">
+      {% image item.preview width-768 as preview %}
+      <img src="{{ preview.url }}" alt="{{ preview.alt }}">
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.description }}</p>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock content %}

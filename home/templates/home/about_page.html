@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags%}
+{% block body_class %}{% endblock %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/post.css' %}">
+{% endblock extra_css %}
+{% block content %}
+
+<section class="post-section">
+  <div class="post-content">
+    {% for block in page.body %}
+      {% include_block block %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}
