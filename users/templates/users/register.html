@@ -7,19 +7,46 @@
 
 {% block content %}
 
-{% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-    {% endfor %}
-{% endif %}
-
 <form method="post" id="CreateAccountForm" class="reg-form">
     {% csrf_token %}
     <h1>Регистрация</h1>
-
-    <div class="form-grid">{{ form.as_p }}</div>
+    
+    <div class="form-grid">
+    <p>{{ form.email.label_tag }}{{ form.email }}{% if form.email.errors %}
+        {% for error in form.email.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    <p>{{ form.phone.label_tag }}{{ form.phone }}{% if form.phone.errors %}
+        {% for error in form.phone.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    <p>{{ form.first_name.label_tag }}{{ form.first_name }}{% if form.first_name.errors %}
+        {% for error in form.first_name.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    <p>{{ form.last_name.label_tag }}{{ form.last_name }}{% if form.last_name.errors %}
+        {% for error in form.last_name.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    <p>{{ form.city.label_tag }}{{ form.city }}{% if form.city.errors %}
+        {% for error in form.city.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    <p>{{ form.iin.label_tag }}{{ form.iin }}{% if form.iin.errors %}
+        {% for error in form.iin.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    <p>{{ form.specialty.label_tag }}{{ form.specialty }}{% if form.specialty.errors %}
+        {% for error in form.specialty.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    <p>{{ form.work_place.label_tag }}{{ form.work_place }}{% if form.work_place.errors %}
+        {% for error in form.work_place.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    <p>{{ form.password1.label_tag }}{{ form.password1 }}{% if form.password1.errors %}
+        {% for error in form.password1.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    <p>{{ form.password2.label_tag }}{{ form.password2 }}{% if form.password2.errors %}
+        {% for error in form.password2.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
+    </div>
+    
+    {% if form.non_field_errors %}<p><span class="form-error">{{ form.non_field_errors }}</span></p>{% endif %}
+    
     <button type="submit" class="form-btn-main">Зарегистрироваться</button>
-    <!--<a href="{% url 'users:register' %}" class="form-btn-main" >Зарегистрироваться</a>-->
     <div class="form-btn-sec"><a href="{% url 'users:login' %}" class="txtlink">У меня уже есть аккаунт</a></div>
 </form>
 

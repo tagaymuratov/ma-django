@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static i18n wagtailcore_tags wagtailuserbar language_switcher %}
 {% wagtail_site as current_site %}
 
 <!DOCTYPE html>
@@ -10,7 +10,6 @@
             {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
             {% endblock %}
             {% block title_suffix %}
-            {% wagtail_site as current_site %}
             {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
             {% endblock %}
         </title>
@@ -30,9 +29,7 @@
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
-        {% block extra_css %}
-        {# Override this in templates to add extra stylesheets #}
-        {% endblock %}
+        {% block extra_css %}{% endblock %}
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
@@ -48,12 +45,9 @@
             </label>
 
             <nav class="header-nav">
-                <p>{{request.site}}</p>
                 <ul>
-                    {% for item in current_site.root_page.get_children.live.in_menu %}
-                    <li>
-                        <a href="{{ item.url }}"{% if item == page %}class="active"{% endif %}">{{ item.title }}</a>
-                    </li>
+                    {% for item in current_site.root_page.localized.get_children.live.in_menu %}
+                    <li><a href="{{ item.url }}"{% if item == page %}class="active"{% endif %}>{{ item.title }}</a></li>
                     {% endfor %}
 
                     {% if user.is_authenticated %}
@@ -61,14 +55,59 @@
                     {% else %}
                         <a href="{% url 'users:login' %}" class="header-login mobile">ВОЙТИ</a>
                     {% endif %}
+
+                    <div class="lang-switcher-mobile"> 
+                        {% get_current_language as CURRENT_LANG %}
+                        {% get_available_languages as LANGUAGES %}
+                        <div class="lang-current">{{ CURRENT_LANG|upper }}</div>
+                        
+                        {% for lang_code, lang_name in LANGUAGES %}
+                            {% if lang_code != CURRENT_LANG %}
+                                <form action="{% url 'set_language' %}" method="post" class="lang-form">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ request.path }}">
+                                    <input name="language" type="hidden" value="{{ lang_code }}">
+                                    <button type="submit" class="lang-btn">{{ lang_code|upper }}</button>
+                                </form>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </ul>
             </nav>
 
-            {% if user.is_authenticated %}
-                <a href="{% url 'users:profile' %}" class="header-login desktop">КАБИНЕТ</a>
-            {% else %}
-                <a href="{% url 'users:login' %}" class="header-login desktop">ВОЙТИ</a>
-            {% endif %}
+            <div class="header-right desktop">
+                <div class="lang-switcher">
+                    {% get_current_language as CURRENT_LANG %}
+                    {% get_available_languages as LANGUAGES %}
+                    <div class="lang-current">
+                        {{ CURRENT_LANG|upper }}
+                    </div>
+
+                    <div class="lang-list">
+                        {% for lang_code, lang_name in LANGUAGES %}
+                            {% if lang_code != CURRENT_LANG %}
+                                <form action="{% url 'set_language' %}" method="post" class="lang-form">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ request.path }}">
+                                    <input name="language" type="hidden" value="{{ lang_code }}">
+                                    <button type="submit" class="lang-btn">
+                                        {{ lang_code|upper }}
+                                    </button>
+                                </form>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                {% if user.is_authenticated %}
+                    <div>
+                        <a href="{% url 'users:profile' %}" class="header-login">КАБИНЕТ</a>
+                    </div>
+                {% else %}
+                    <a href="{% url 'users:login' %}" class="header-login">ВОЙТИ</a>
+                {% endif %}
+
+            </div>
         </header>
 
         {% block content %}{% endblock %}
@@ -78,11 +117,8 @@
             <p class="footer-rights">ОО "Ассоциация педиатров города Астаны" © 2026г. Все права защищены.</p>
         </footer>
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
-        {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
-        {% endblock %}
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+        {% block extra_js %}{% endblock %}
     </body>
 </html>

@@ -1,8 +1,10 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, get_user_model, authenticate
 from django.utils.html import strip_tags
 from django.core.validators import RegexValidator
+
+from wagtail.users.forms import UserEditForm, UserCreationForm
 
 from .models import CustomUser
 
@@ -13,8 +15,8 @@ class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(label="Имя", max_length=30, required=True)
     last_name = forms.CharField(label="Фамилия", max_length=30, required=True)
     city = forms.CharField(label="Город", max_length=100, required=True)
-    phone = forms.CharField(label="Телефон", max_length=12, required=True, validators=[RegexValidator(r'^\+\d{10,12}$', 'Enter a valid phone number.')])
-    iin = forms.CharField(label="ИИН", max_length=12, required=True, validators=[RegexValidator(r'^\d{12}$', 'Enter a valid IIN.')])
+    phone = forms.CharField(label="Телефон", max_length=18, required=True, validators=[RegexValidator(r'^(?:\+7|8)7\d{9}$', 'Введите корректный номер телефона.')])
+    iin = forms.CharField(label="ИИН", max_length=12, required=True, validators=[RegexValidator(r'^\d{12}$', 'Введите корректный ИИН.')])
     work_place = forms.CharField(label="Место работы", max_length=254, required=True)
     specialty = forms.CharField(label="Специальность", max_length=200, required=True)
     password1 = forms.CharField(label="Пароль", required=True, widget=forms.PasswordInput)
@@ -29,7 +31,6 @@ class CustomUserCreationForm(UserCreationForm):
       if User.objects.filter(email=email).exists():
           raise forms.ValidationError("Пользователь с таким email уже зарегестрирован.")
       return email
-    
 
     def save(self, commit = True):
         user = super().save(commit=False)
@@ -63,10 +64,10 @@ class CustomUserLoginForm(AuthenticationForm):
                 raise forms.ValidationError("Этот аккаунт неактивен.")
         return cleaned_data
     
-class CustomUserUpdateForm(forms.ModelForm):
+class CustomUserEditForm(UserEditForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
-    city = forms.CharField(max_length=100, required=True)
+    city = forms.CharField(max_length=100, required=True, label="Город")
     phone = forms.CharField(max_length=12, required=True, validators=[RegexValidator(r'^\+\d{10,12}$', 'Введите корректный номер телефона.')])
     work_place = forms.CharField(max_length=254, required=True)
     specialty = forms.CharField(max_length=200, required=True)
