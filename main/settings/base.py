@@ -132,7 +132,6 @@ LANGUAGE_CODE = "ru"
 LANGUAGES = [
     ('ru', "Russian"),
     ('kk', "Kazakh"),
-    ('en', "English"),
 ]
 
 WAGTAIL_CONTENT_LANGUAGES = LANGUAGES
