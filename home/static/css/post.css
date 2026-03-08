@@ -114,3 +114,14 @@
   background-color: var(--hover-blue);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
+
+.post-btn{
+  padding: .75rem 2rem;
+  border-radius: 1rem;
+  display: block;
+  color: #fff;
+  background-color: #000;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto;
+}

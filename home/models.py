@@ -11,6 +11,8 @@ from wagtail.blocks import RichTextBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 
+from home.blocks import ButtonBlock
+
 class ContentMixin(models.Model):
     description = models.CharField(max_length=255, blank=True, null=True)
     preview = models.ForeignKey(
@@ -26,6 +28,7 @@ class ContentMixin(models.Model):
         ], label="Текст")),
         ('imgblock', ImageChooserBlock(label="Изображение", template="blocks/image_block.html")),
         ('embedblock', EmbedBlock(label="Youtube", template="blocks/embed_block.html")),
+        ('button', ButtonBlock())
     ], blank=True)
 
     class Meta:

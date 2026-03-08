@@ -34,6 +34,8 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
+        {% get_current_language as CURRENT_LANG %}
+        {% get_available_languages as LANGUAGES %}
         <header class="kzglass">
             <a href="/" class="header-logo"><img src="{% static 'imgs/logo.webp' %}" alt="Logo"/></a>
 
@@ -51,9 +53,21 @@
                     {% endfor %}
 
                     {% if user.is_authenticated %}
-                        <a href="{% url 'users:profile' %}" class="header-login mobile">КАБИНЕТ</a>
+                        <a href="{% url 'users:profile' %}" class="header-login mobile">
+                            {% if CURRENT_LANG == 'kk' %}
+                                КАБИНЕТ
+                            {% elif CURRENT_LANG == 'ru' %}
+                                КАБИНЕТ
+                            {% endif%}
+                        </a>
                     {% else %}
-                        <a href="{% url 'users:login' %}" class="header-login mobile">ВОЙТИ</a>
+                        <a href="{% url 'users:login' %}" class="header-login mobile">
+                            {% if CURRENT_LANG == 'kk' %}
+                                КІРУ
+                            {% elif CURRENT_LANG == 'ru' %}
+                                ВОЙТИ
+                            {% endif%}
+                        </a>
                     {% endif %}
 
                     <div class="lang-switcher-mobile"> 
@@ -77,8 +91,6 @@
 
             <div class="header-right desktop">
                 <div class="lang-switcher">
-                    {% get_current_language as CURRENT_LANG %}
-                    {% get_available_languages as LANGUAGES %}
                     <div class="lang-current">
                         {{ CURRENT_LANG|upper }}
                     </div>
@@ -100,13 +112,22 @@
                 </div>
 
                 {% if user.is_authenticated %}
-                    <div>
-                        <a href="{% url 'users:profile' %}" class="header-login">КАБИНЕТ</a>
-                    </div>
+                   <a href="{% url 'users:profile' %}" class="header-login">
+                        {% if CURRENT_LANG == 'kk' %}
+                            КАБИНЕТ
+                        {% elif CURRENT_LANG == 'ru' %}
+                            КАБИНЕТ
+                        {% endif%}
+                    </a>
                 {% else %}
-                    <a href="{% url 'users:login' %}" class="header-login">ВОЙТИ</a>
+                    <a href="{% url 'users:login' %}" class="header-login">
+                        {% if CURRENT_LANG == 'kk' %}
+                            КІРУ
+                        {% elif CURRENT_LANG == 'ru' %}
+                            ВОЙТИ
+                        {% endif%}
+                    </a>
                 {% endif %}
-
             </div>
         </header>
 

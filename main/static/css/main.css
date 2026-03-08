@@ -98,7 +98,7 @@ header{
 }
 
 .menu-toggle, .hamburger, .mobile {
-  display: none;
+  display: none !important;
 }
 
 @media (max-width: 768px) {
@@ -190,6 +190,7 @@ header{
   padding: .5rem 1rem;
   border-radius: .25rem;
   text-transform: uppercase;
+  display: block;
 
   &:hover {
     background-color: var(--hover-link-color);
