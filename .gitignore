@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Localization files
+*.mo
+
 # C extensions
 *.so
 
@@ -39,7 +42,7 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-# Wagtail media & static (если не используешь CDN)
+# Wagtail media & static
 media/
 staticfiles/
 

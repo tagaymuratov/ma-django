@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from .forms import CustomUserCreationForm, CustomUserLoginForm, CustomUserEditForm  
 from .models import CustomUser
 
@@ -16,7 +17,7 @@ def register(request):
             login(request, user, backend="django.contrib.auth.backends.ModelBackend")
             return redirect("/")
         else:
-            messages.error(request, "Заполните все поля корректно.")
+            messages.error(request, _("Заполните все поля корректно."))
     else:
         form = CustomUserCreationForm()
     return render(request, "users/register.html", {"form": form})

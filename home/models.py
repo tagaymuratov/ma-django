@@ -3,10 +3,10 @@ from urllib import request
 
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.translation import gettext_lazy as _
 
 from wagtail.models import Page
 from wagtail.fields import StreamField
-
 from wagtail.blocks import RichTextBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
@@ -95,8 +95,8 @@ class EventPage(Page, ContentMixin):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["latest_posts"] = get_latest_posts(self, EventPage)
-        context["latest_posts_label"] = "Последние события"
-        context["latest_posts_link"] = "Больше событий"
+        context["latest_posts_label"] = _("Последние события")
+        context["latest_posts_link"] = _("Больше событий")
         return context
 
 class NewsPage(Page, ContentMixin):
@@ -104,8 +104,8 @@ class NewsPage(Page, ContentMixin):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["latest_posts"] = get_latest_posts(self, NewsPage)
-        context["latest_posts_label"] = "Последние новости"
-        context["latest_posts_link"] = "Больше новостей"
+        context["latest_posts_label"] = _("Последние новости")
+        context["latest_posts_link"] = _("Больше новостей")
         return context
 
 class PodcastPage(Page, ContentMixin):
@@ -113,8 +113,8 @@ class PodcastPage(Page, ContentMixin):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["latest_posts"] = get_latest_posts(self, PodcastPage)
-        context["latest_posts_label"] = "Последние подкасты"
-        context["latest_posts_link"] = "Больше подкастов"
+        context["latest_posts_label"] = _("Последние подкасты")
+        context["latest_posts_link"] = _("Больше подкастов")
         return context
 
 class CoursePage(Page, ContentMixin):
@@ -122,8 +122,8 @@ class CoursePage(Page, ContentMixin):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["latest_posts"] = get_latest_posts(self, CoursePage)
-        context["latest_posts_label"] = "Последние курсы"
-        context["latest_posts_link"] = "Больше курсов"
+        context["latest_posts_label"] = _("Последние курсы")
+        context["latest_posts_link"] = _("Больше курсов")
         return context
     
 class AboutPage(Page, ContentMixin):

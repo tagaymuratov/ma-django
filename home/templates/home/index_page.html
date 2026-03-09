@@ -33,7 +33,6 @@
       </li>
 
       {% for num in posts.paginator.page_range %}
-          {# Показываем первую, последнюю и по 2 страницы вокруг текущей #}
           {% if num == 1 or num == posts.paginator.num_pages or num >= posts.number|add:-2 and num <= posts.number|add:2 %}
               <li>
                   {% if posts.number == num %}

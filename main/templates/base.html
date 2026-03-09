@@ -53,21 +53,9 @@
                     {% endfor %}
 
                     {% if user.is_authenticated %}
-                        <a href="{% url 'users:profile' %}" class="header-login mobile">
-                            {% if CURRENT_LANG == 'kk' %}
-                                КАБИНЕТ
-                            {% elif CURRENT_LANG == 'ru' %}
-                                КАБИНЕТ
-                            {% endif%}
-                        </a>
+                        <a href="{% url 'users:profile' %}" class="header-login mobile">{% translate "КАБИНЕТ" %}</a>
                     {% else %}
-                        <a href="{% url 'users:login' %}" class="header-login mobile">
-                            {% if CURRENT_LANG == 'kk' %}
-                                КІРУ
-                            {% elif CURRENT_LANG == 'ru' %}
-                                ВОЙТИ
-                            {% endif%}
-                        </a>
+                        <a href="{% url 'users:login' %}" class="header-login mobile">{% translate "ВОЙТИ" %}</a>
                     {% endif %}
 
                     <div class="lang-switcher-mobile"> 
@@ -112,21 +100,9 @@
                 </div>
 
                 {% if user.is_authenticated %}
-                   <a href="{% url 'users:profile' %}" class="header-login">
-                        {% if CURRENT_LANG == 'kk' %}
-                            КАБИНЕТ
-                        {% elif CURRENT_LANG == 'ru' %}
-                            КАБИНЕТ
-                        {% endif%}
-                    </a>
+                   <a href="{% url 'users:profile' %}" class="header-login">{% translate "КАБИНЕТ" %}</a>
                 {% else %}
-                    <a href="{% url 'users:login' %}" class="header-login">
-                        {% if CURRENT_LANG == 'kk' %}
-                            КІРУ
-                        {% elif CURRENT_LANG == 'ru' %}
-                            ВОЙТИ
-                        {% endif%}
-                    </a>
+                    <a href="{% url 'users:login' %}" class="header-login">{% translate "ВОЙТИ" %}</a>
                 {% endif %}
             </div>
         </header>
@@ -135,7 +111,9 @@
 
         <footer>
             <hr/>
-            <p class="footer-rights">ОО "Ассоциация педиатров города Астаны" © 2026г. Все права защищены.</p>
+            <p class="footer-rights">{% blocktrans %}
+                ОО "Ассоциация педиатров города Астаны" © 2026г. Все права защищены.
+            {% endblocktrans %}</p>
         </footer>
 
 

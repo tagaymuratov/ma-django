@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static i18n wagtailcore_tags %}
-{% get_current_language as CURRENT_LANG %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/users.css' %}">
@@ -10,11 +9,8 @@
 
 <form method="post" id="LoginForm" class="login-form">
     {% csrf_token %}
-    {% if CURRENT_LANG == 'kk' %}
-        <h1>Кіру</h1>
-    {% elif CURRENT_LANG == 'ru' %}
-        <h1>Вход</h1>
-    {% endif %}
+    
+    <h1>{% translate "Вход" %}</h1>
 
     <p>{{ form.username.label_tag }}{{ form.username }}{% if form.username.errors %}
         {% for error in form.username.errors %}<span class="form-error">{{ error }}</span> 
@@ -25,14 +21,13 @@
 
     {% if form.non_field_errors %}<p><span class="form-error">{{ form.non_field_errors }}</span></p>{% endif %}
 
-    <button type="submit" class="form-btn-main">
-        {% if CURRENT_LANG == 'kk' %}
-        Кіру
-    {% elif CURRENT_LANG == 'ru' %}
-        Войти
-    {% endif %}
-    </button>
-    <div class="form-btn-sec">Если у вас нет аккаунта <a href="{% url 'users:register' %}" class="txtlink">Зарегистрируйтесь</a></div>
+    <button type="submit" class="form-btn-main">{% translate "Войти" %}</button>
+    <div class="form-btn-sec">
+        {% url 'users:register' as register_url %}
+        {% blocktrans with url=register_url %}
+            Если у вас нет аккаунта, <a href="{{ url }}" class="txtlink">Зарегистрируйтесь</a>
+        {% endblocktrans %}
+    </div>
 </form>
 
 {% endblock %}

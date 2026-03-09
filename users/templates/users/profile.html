@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
+{% load static i18n wagtailcore_tags %}
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/users.css' %}">
 {% endblock extra_css %}
@@ -7,15 +7,15 @@
    
 <form action="{% url 'users:logout' %}" method="post" class="logout-form">
     {% csrf_token %}
-    <h1>Здравствуйте, {{ user.first_name }} {{ user.last_name }}!</h1>
-    <p>Здесь будет ваш личный кабинет, сейчас он в разработке.</p>
-    <button type="submit" class="form-btn-main">Выйти из аккаунта</button>
+    <h1>{% translate "Здравствуйте, " %}{{ user.first_name }} {{ user.last_name }}!</h1>
+    <p>{% translate "Здесь будет ваш личный кабинет, сейчас он в разработке." %}</p>
+    <button type="submit" class="form-btn-main">{% translate "Выйти из аккаунта" %}</button>
 </form>
 
 <form method="post" id="ProfileForm" class="profile-form">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Сохранить изменения</button>
+    <button type="submit">{% translate "Сохранить изменения" %}</button>
 </form>
 
 {% endblock %}

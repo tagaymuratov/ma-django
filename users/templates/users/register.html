@@ -9,7 +9,7 @@
 
 <form method="post" id="CreateAccountForm" class="reg-form">
     {% csrf_token %}
-    <h1>Регистрация</h1>
+    <h1>{% translate "Регистрация" %}</h1>
     
     <div class="form-grid">
     <p>{{ form.email.label_tag }}{{ form.email }}{% if form.email.errors %}
@@ -46,8 +46,8 @@
     
     {% if form.non_field_errors %}<p><span class="form-error">{{ form.non_field_errors }}</span></p>{% endif %}
     
-    <button type="submit" class="form-btn-main">Зарегистрироваться</button>
-    <div class="form-btn-sec"><a href="{% url 'users:login' %}" class="txtlink">У меня уже есть аккаунт</a></div>
+    <button type="submit" class="form-btn-main">{% translate "Зарегистрироваться" %}</button>
+    <div class="form-btn-sec"><a href="{% url 'users:login' %}" class="txtlink">{% translate "У меня уже есть аккаунт" %}</a></div>
 </form>
 
 {% endblock %}

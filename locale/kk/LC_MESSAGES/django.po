@@ -1,0 +1,204 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-09 21:12+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: home/models.py:98
+msgid "Последние события"
+msgstr ""
+
+#: home/models.py:99
+msgid "Больше событий"
+msgstr "Көбірек іс-шаралар"
+
+#: home/models.py:107 home/templates/home/home_page.html:22
+msgid "Последние новости"
+msgstr "Соңғы жаңалықтар"
+
+#: home/models.py:108 home/templates/home/home_page.html:23
+msgid "Больше новостей"
+msgstr "Көбірек жаңалықтар"
+
+#: home/models.py:116
+msgid "Последние подкасты"
+msgstr "Соңғы подкасттар"
+
+#: home/models.py:117 home/templates/home/home_page.html:77
+msgid "Больше подкастов"
+msgstr "Көбірек подкасттар"
+
+#: home/models.py:125
+msgid "Последние курсы"
+msgstr "Соңғы курстар"
+
+#: home/models.py:126
+msgid "Больше курсов"
+msgstr "Көбірек курстар"
+
+#: home/templates/home/home_page.html:40
+msgid "Мероприятия"
+msgstr "Іс-шаралар"
+
+#: home/templates/home/home_page.html:41
+msgid "Все мероприятия"
+msgstr "Барлық іс-шаралар"
+
+#: home/templates/home/home_page.html:58
+msgid "Новые курсы"
+msgstr "Жаңа курстар"
+
+#: home/templates/home/home_page.html:59
+msgid "Все курсы"
+msgstr "Барлық курстар"
+
+#: home/templates/home/home_page.html:76
+msgid "Подкасты"
+msgstr "Подкасттар"
+
+#: main/templates/base.html:56 main/templates/base.html:103
+msgid "КАБИНЕТ"
+msgstr "КАБИНЕТ"
+
+#: main/templates/base.html:58 main/templates/base.html:105
+msgid "ВОЙТИ"
+msgstr "КІРУ"
+
+#: main/templates/base.html:114
+msgid ""
+"\n"
+"                ОО \"Ассоциация педиатров города Астаны\" © 2026г. Все права "
+"защищены.\n"
+"            "
+msgstr ""
+"\n"
+"\"Астана қаласының педиатрлар қауымдастығы\" ҚБ © 2026ж. "
+"Барлық құқықтар қорғалған.\n"
+""
+
+#: users/forms.py:16
+msgid "Имя"
+msgstr "Аты"
+
+#: users/forms.py:17
+msgid "Фамилия"
+msgstr "Тегі"
+
+#: users/forms.py:18 users/forms.py:71
+msgid "Город"
+msgstr "Қала"
+
+#: users/forms.py:19 users/forms.py:72
+msgid "Телефон"
+msgstr "Телефон"
+
+#: users/forms.py:19 users/forms.py:72
+msgid "Введите корректный номер телефона."
+msgstr "Дұрыс телефон нөмірін енгізіңіз."
+
+#: users/forms.py:20
+msgid "ИИН"
+msgstr "ЖСН"
+
+#: users/forms.py:20
+msgid "Введите корректный ИИН."
+msgstr "Дұрыс ЖСН енгізіңіз."
+
+#: users/forms.py:21 users/forms.py:73
+msgid "Место работы"
+msgstr "Жұмыс орны"
+
+#: users/forms.py:22 users/forms.py:74
+msgid "Специальность"
+msgstr "Мамандығы"
+
+#: users/forms.py:23 users/forms.py:53
+msgid "Пароль"
+msgstr "Құпия сөз"
+
+#: users/forms.py:24
+msgid "Подтвердите пароль"
+msgstr "Құпия сөзді растаңыз"
+
+#: users/forms.py:33
+msgid "Пользователь с таким email уже зарегестрирован."
+msgstr "Бұл email-мен пайдаланушы тіркеліп қойған."
+
+#: users/forms.py:52
+msgid "Email"
+msgstr "Email"
+
+#: users/forms.py:63
+msgid "Неверный email или пароль."
+msgstr "Email немесе құпия сөз қате."
+
+#: users/forms.py:65
+msgid "Этот аккаунт неактивен."
+msgstr "Бұл аккаунт белсенді емес."
+
+#: users/templates/users/login.html:13
+msgid "Вход"
+msgstr "Кіру"
+
+#: users/templates/users/login.html:24
+msgid "Войти"
+msgstr "Кіру"
+
+#: users/templates/users/login.html:27
+#, python-format
+msgid ""
+"\n"
+"            Если у вас нет аккаунта, <a href=\"%(url)s\" "
+"class=\"txtlink\">Зарегистрируйтесь</a>\n"
+"        "
+msgstr ""
+"\n"
+"            Егер аккаунтыңыз болмаса, <a href=\"%(url)s\" "
+"class=\"txtlink\">Тіркеліңіз</a>\n"
+"        "
+
+#: users/templates/users/profile.html:10
+msgid "Здравствуйте, "
+msgstr "Сәлеметсіз бе, "
+
+#: users/templates/users/profile.html:11
+msgid "Здесь будет ваш личный кабинет, сейчас он в разработке."
+msgstr "Мұнда сіздің жеке кабинетіңіз болады, қазіргі уақытта ол әзірлену үстінде."
+
+#: users/templates/users/profile.html:12
+msgid "Выйти из аккаунта"
+msgstr "Аккаунттан шығу"
+
+#: users/templates/users/profile.html:18
+msgid "Сохранить изменения"
+msgstr "Өзгерістерді сақтау"
+
+#: users/templates/users/register.html:12
+msgid "Регистрация"
+msgstr "Тіркелу"
+
+#: users/templates/users/register.html:49
+msgid "Зарегистрироваться"
+msgstr "Тіркелу"
+
+#: users/templates/users/register.html:50
+msgid "У меня уже есть аккаунт"
+msgstr "Менде аккаунт бар"
+
+#: users/views.py:20
+msgid "Заполните все поля корректно."
+msgstr "Барлық өрістерді дұрыс толтырыңыз."

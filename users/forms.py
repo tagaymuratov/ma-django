@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, get_user_model, authenticate
 from django.utils.html import strip_tags
 from django.core.validators import RegexValidator
+from django.utils.translation import gettext_lazy as _
 
 from wagtail.users.forms import UserEditForm, UserCreationForm
 
@@ -12,15 +13,15 @@ User = get_user_model()
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, max_length=254)
-    first_name = forms.CharField(label="Имя", max_length=30, required=True)
-    last_name = forms.CharField(label="Фамилия", max_length=30, required=True)
-    city = forms.CharField(label="Город", max_length=100, required=True)
-    phone = forms.CharField(label="Телефон", max_length=18, required=True, validators=[RegexValidator(r'^(?:\+7|8)7\d{9}$', 'Введите корректный номер телефона.')])
-    iin = forms.CharField(label="ИИН", max_length=12, required=True, validators=[RegexValidator(r'^\d{12}$', 'Введите корректный ИИН.')])
-    work_place = forms.CharField(label="Место работы", max_length=254, required=True)
-    specialty = forms.CharField(label="Специальность", max_length=200, required=True)
-    password1 = forms.CharField(label="Пароль", required=True, widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Подтвердите пароль", required=True, widget=forms.PasswordInput)
+    first_name = forms.CharField(label=_("Имя"), max_length=30, required=True)
+    last_name = forms.CharField(label=_("Фамилия"), max_length=30, required=True)
+    city = forms.CharField(label=_("Город"), max_length=100, required=True)
+    phone = forms.CharField(label=_("Телефон"), max_length=18, required=True, validators=[RegexValidator(r'^(?:\+7|8)7\d{9}$', _('Введите корректный номер телефона.'))])
+    iin = forms.CharField(label=_("ИИН"), max_length=12, validators=[RegexValidator(r'^\d{12}$', _('Введите корректный ИИН.'))], required=False)
+    work_place = forms.CharField(label=_("Место работы"), max_length=254, required=True)
+    specialty = forms.CharField(label=_("Специальность"), max_length=200, required=True)
+    password1 = forms.CharField(label=_("Пароль"), required=True, widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Подтвердите пароль"), required=True, widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -29,7 +30,7 @@ class CustomUserCreationForm(UserCreationForm):
     def clean_email(self):
       email = self.cleaned_data.get("email")
       if User.objects.filter(email=email).exists():
-          raise forms.ValidationError("Пользователь с таким email уже зарегестрирован.")
+          raise forms.ValidationError(_("Пользователь с таким email уже зарегестрирован."))
       return email
 
     def save(self, commit = True):
@@ -48,8 +49,8 @@ class CustomUserCreationForm(UserCreationForm):
         return cleaned_data
     
 class CustomUserLoginForm(AuthenticationForm):
-    username = forms.EmailField(label="Email", max_length=254, required=True, widget=forms.EmailInput(attrs={"autofocus":True}))
-    password = forms.CharField(label="Пароль", widget=forms.PasswordInput, required=True)
+    username = forms.EmailField(label=_("Email"), max_length=254, required=True, widget=forms.EmailInput(attrs={"autofocus":True}))
+    password = forms.CharField(label=_("Пароль"), widget=forms.PasswordInput, required=True)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -59,18 +60,18 @@ class CustomUserLoginForm(AuthenticationForm):
         if email and password:
             self.user_cache = authenticate(self.request, email=email, password=password)
             if self.user_cache is None:
-                raise forms.ValidationError("Неверный email или пароль.")
+                raise forms.ValidationError(_("Неверный email или пароль."))
             elif not self.user_cache.is_active:
-                raise forms.ValidationError("Этот аккаунт неактивен.")
+                raise forms.ValidationError(_("Этот аккаунт неактивен."))
         return cleaned_data
     
 class CustomUserEditForm(UserEditForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
-    city = forms.CharField(max_length=100, required=True, label="Город")
-    phone = forms.CharField(max_length=12, required=True, validators=[RegexValidator(r'^\+\d{10,12}$', 'Введите корректный номер телефона.')])
-    work_place = forms.CharField(max_length=254, required=True)
-    specialty = forms.CharField(max_length=200, required=True)
+    city = forms.CharField(max_length=100, required=True, label=_("Город"))
+    phone = forms.CharField(max_length=12, required=True, validators=[RegexValidator(r'^\+\d{10,12}$', _('Введите корректный номер телефона.'))], label=_("Телефон"))
+    work_place = forms.CharField(max_length=254, required=True, label=_("Место работы"))
+    specialty = forms.CharField(max_length=200, required=True, label=_("Специальность"))
 
     class Meta:
         model = User

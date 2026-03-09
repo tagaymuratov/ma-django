@@ -29,14 +29,14 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=30)
     city = models.CharField(max_length=100)
     phone = models.CharField(max_length=12, unique=True)
-    iin = models.CharField(max_length=12, unique=True)
+    iin = models.CharField(max_length=12, unique=True, null=True, blank=True)
     work_place = models.CharField(max_length=254)
     specialty = models.CharField(max_length=200)
 
     username = CustomUserManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["first_name", "last_name", "city", "phone", "iin", "work_place", "specialty"]
+    REQUIRED_FIELDS = ["first_name", "last_name", "city", "phone", "work_place", "specialty"]
 
     def __str__(self):
       return self.email
