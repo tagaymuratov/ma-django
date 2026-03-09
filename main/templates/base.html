@@ -111,11 +111,10 @@
 
         <footer>
             <hr/>
-            <p class="footer-rights">{% blocktrans %}
-                ОО "Ассоциация педиатров города Астаны" © 2026г. Все права защищены.
-            {% endblocktrans %}</p>
+            <p class="footer-rights">
+                {% translate "ОО Ассоциация педиатров города Астаны © 2026г. Все права защищены." %}
+            </p>
         </footer>
-
 
         <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
         {% block extra_js %}{% endblock %}

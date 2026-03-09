@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-09 21:12+0000\n"
+"POT-Creation-Date: 2026-03-09 21:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,17 +78,9 @@ msgstr "КАБИНЕТ"
 msgid "ВОЙТИ"
 msgstr "КІРУ"
 
-#: main/templates/base.html:114
-msgid ""
-"\n"
-"                ОО \"Ассоциация педиатров города Астаны\" © 2026г. Все права "
-"защищены.\n"
-"            "
-msgstr ""
-"\n"
-"\"Астана қаласының педиатрлар қауымдастығы\" ҚБ © 2026ж. "
-"Барлық құқықтар қорғалған.\n"
-""
+#: main/templates/base.html:115
+msgid "ОО Ассоциация педиатров города Астаны © 2026г. Все права защищены."
+msgstr "Астана қаласының педиатрлар қауымдастығы ҚБ © 2026ж. Барлық құқықтар қорғалған."
 
 #: users/forms.py:16
 msgid "Имя"
@@ -177,7 +169,8 @@ msgstr "Сәлеметсіз бе, "
 
 #: users/templates/users/profile.html:11
 msgid "Здесь будет ваш личный кабинет, сейчас он в разработке."
-msgstr "Мұнда сіздің жеке кабинетіңіз болады, қазіргі уақытта ол әзірлену үстінде."
+msgstr ""
+"Мұнда сіздің жеке кабинетіңіз болады, қазіргі уақытта ол әзірлену үстінде."
 
 #: users/templates/users/profile.html:12
 msgid "Выйти из аккаунта"
