@@ -26,6 +26,8 @@ html, body {
     box-sizing: border-box;
     background: #eceef2;
     min-height: 100vh;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 *,
@@ -76,7 +78,6 @@ header{
   justify-content: space-between;
   font-size: .875rem;
   padding: 0 1rem;
-  overflow-x: clip;
 
   a{
     display: block;
@@ -335,6 +336,8 @@ footer{
   text-align: center;
   transition: background 0.2s;
   border-radius: .25rem;
+  font-size: inherit;
+  height: 100%;
 }
 
 .lang-btn:hover {
