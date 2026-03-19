@@ -83,7 +83,7 @@ header{
   a{
     display: block;
     padding: .5rem 1rem;
-    border-radius: .25rem;
+    border-radius: 1rem;
     text-transform: uppercase;
   
     &:hover {
@@ -192,7 +192,7 @@ header{
 
 .header-login {
   padding: .5rem 1rem;
-  border-radius: .25rem;
+  border-radius: 1rem;
   text-transform: uppercase;
 
   &:hover {
@@ -214,7 +214,7 @@ section{
     width: calc(100dvw - 64px);
     height: calc(100dvh - 128px);
     object-fit: cover;
-    border-radius: 2rem;
+    border-radius: 1rem;
   }
 }
 
@@ -261,7 +261,7 @@ section{
 
 .card{
   background-color: #fff;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding-bottom: 1.5rem;
@@ -281,7 +281,7 @@ section{
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
   }
 
   p{
@@ -320,7 +320,7 @@ footer{
   left: 0;
   z-index: 100;
   width: 100%;
-  border-radius: .25rem;
+  border-radius: 1rem;
   overflow: hidden;
 }
 
@@ -338,7 +338,7 @@ footer{
   cursor: pointer;
   text-align: center;
   transition: background 0.2s;
-  border-radius: .25rem;
+  border-radius: 1rem;
   font-size: inherit;
   height: 100%;
 }

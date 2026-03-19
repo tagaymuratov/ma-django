@@ -29,7 +29,7 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=30)
     city = models.CharField(max_length=100)
     phone = models.CharField(max_length=12, unique=True)
-    iin = models.CharField(max_length=12, unique=True, null=True, blank=True)
+    iin = models.CharField(max_length=12, null=True, blank=True)
     work_place = models.CharField(max_length=254)
     specialty = models.CharField(max_length=200)
 

@@ -17,12 +17,12 @@
   </div>
 </div>
 
+{% if news %}
 <section>
   <div class="home-section-top">
     <h1>{% translate "Последние новости" %}</h1>
     <a href="{{ news_link.url }}" class="txtlink">{% translate "Больше новостей" %}</a>
   </div>
-
   <div class="cards">
     {% for item in news %}
       <a href="{{ item.url }}" class="card">
@@ -34,13 +34,14 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
+{% if events %}
 <section>
   <div class="home-section-top">
     <h1>{% translate "Мероприятия" %}</h1>
     <a href="{{ events_link.url }}" class="txtlink">{% translate "Все мероприятия" %}</a>
   </div>
-
   <div class="cards">
     {% for item in events %}
     <a href="{{ item.url }}" class="card">
@@ -52,7 +53,9 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
+{% if courses %}
 <section>
   <div class="home-section-top">
     <h1>{% translate "Новые курсы" %}</h1>
@@ -70,8 +73,10 @@
     {% endfor %}
   </div>
 </section>
+{% endif %}
 
-<!--<section>
+{% if podcasts %}
+<section>
   <div class="home-section-top">
     <h1>{% translate "Подкасты" %}</h1>
     <a href="{{ podcasts_link.url }}" class="txtlink">{% translate "Больше подкастов" %}</a>
@@ -87,6 +92,7 @@
     </a>
     {% endfor %}
   </div>
-</section>-->
+</section>
+{% endif %}
 
 {% endblock content %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags%}
+{% load static i18n wagtailcore_tags wagtailimages_tags%}
 {% block body_class %}{% endblock %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/index_page.css' %}">
@@ -9,18 +9,22 @@
 <section class="index-section">
   <h1 class="index-title">{{ page.title }}</h1>
 
-  <div class="index-cards">
-  {% for post in posts %}
-    <a href="{% pageurl post %}" class="card">
-      {% image post.preview width-768 as preview %}
-      <img src="{{ preview.url }}" alt="{{ preview.alt }}">
-      <div>
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.description }}</p>
-      </div>
-    </a>
-  {% endfor %}
-  </div>
+  {% if posts %}
+    <div class="index-cards">
+    {% for post in posts %}
+      <a href="{% pageurl post %}" class="card">
+        {% image post.preview width-768 as preview %}
+        <img src="{{ preview.url }}" alt="{{ preview.alt }}">
+        <div>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.description }}</p>
+        </div>
+      </a>
+    {% endfor %}
+    </div>
+  {% else %}
+    <p>{% translate "Совсем скоро здесь появятся записи." %}</p>
+  {% endif %}
 
   {% if posts.paginator.num_pages > 1 %}
   <nav class="pagination-container" aria-label="Pagination">

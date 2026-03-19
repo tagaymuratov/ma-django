@@ -13,6 +13,7 @@ urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
+    path("home/", include("home.urls", namespace="home")),
     path("search/", search_views.search, name="search"),
     path("users/", include("users.urls", namespace="users")),
     path('i18n/', include('django.conf.urls.i18n')),

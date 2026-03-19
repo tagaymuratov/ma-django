@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-09 21:45+0000\n"
+"POT-Creation-Date: 2026-03-19 23:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,57 +18,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: home/models.py:98
-msgid "Последние события"
-msgstr ""
-
-#: home/models.py:99
-msgid "Больше событий"
-msgstr "Көбірек іс-шаралар"
-
-#: home/models.py:107 home/templates/home/home_page.html:22
+#: home/models.py:109 home/templates/home/home_page.html:23
 msgid "Последние новости"
 msgstr "Соңғы жаңалықтар"
 
-#: home/models.py:108 home/templates/home/home_page.html:23
+#: home/models.py:110 home/templates/home/home_page.html:24
 msgid "Больше новостей"
 msgstr "Көбірек жаңалықтар"
 
-#: home/models.py:116
+#: home/models.py:118
 msgid "Последние подкасты"
 msgstr "Соңғы подкасттар"
 
-#: home/models.py:117 home/templates/home/home_page.html:77
+#: home/models.py:119 home/templates/home/home_page.html:82
 msgid "Больше подкастов"
 msgstr "Көбірек подкасттар"
 
-#: home/models.py:125
+#: home/models.py:127
 msgid "Последние курсы"
 msgstr "Соңғы курстар"
 
-#: home/models.py:126
+#: home/models.py:128
 msgid "Больше курсов"
 msgstr "Көбірек курстар"
 
-#: home/templates/home/home_page.html:40
+#: home/templates/home/event_page.html:25
+msgid "Вы уже зарегистрированы на это событие"
+msgstr "Сіз бұл іс-шараға тіркеліп қойғансыз"
+
+#: home/templates/home/event_page.html:27
+msgid "Принять участие"
+msgstr "Қатысу"
+
+#: home/templates/home/event_page.html:32
+#, fuzzy
+#| msgid "Зарегистрироваться"
+msgid "Зарегистрируйтесь, чтобы участвовать"
+msgstr "Қатысу үшін тіркеліңіз"
+
+#: home/templates/home/event_page.html:38
+msgid "Последние события"
+msgstr "Соңғы іс-шаралар"
+
+#: home/templates/home/event_page.html:49
+msgid "Больше событий"
+msgstr "Көбірек іс-шаралар"
+
+#: home/templates/home/home_page.html:42
 msgid "Мероприятия"
 msgstr "Іс-шаралар"
 
-#: home/templates/home/home_page.html:41
+#: home/templates/home/home_page.html:43
 msgid "Все мероприятия"
 msgstr "Барлық іс-шаралар"
 
-#: home/templates/home/home_page.html:58
+#: home/templates/home/home_page.html:61
 msgid "Новые курсы"
 msgstr "Жаңа курстар"
 
-#: home/templates/home/home_page.html:59
+#: home/templates/home/home_page.html:62
 msgid "Все курсы"
 msgstr "Барлық курстар"
 
-#: home/templates/home/home_page.html:76
+#: home/templates/home/home_page.html:81
 msgid "Подкасты"
 msgstr "Подкасттар"
+
+#: home/templates/home/index_page.html:26
+msgid "Совсем скоро здесь появятся записи."
+msgstr "Жуырда мұнда жазбалар пайда болады."
 
 #: main/templates/base.html:56 main/templates/base.html:103
 msgid "КАБИНЕТ"
@@ -184,14 +202,14 @@ msgstr "Өзгерістерді сақтау"
 msgid "Регистрация"
 msgstr "Тіркелу"
 
-#: users/templates/users/register.html:49
+#: users/templates/users/register.html:50
 msgid "Зарегистрироваться"
 msgstr "Тіркелу"
 
-#: users/templates/users/register.html:50
+#: users/templates/users/register.html:51
 msgid "У меня уже есть аккаунт"
 msgstr "Менде аккаунт бар"
 
-#: users/views.py:20
+#: users/views.py:23
 msgid "Заполните все поля корректно."
 msgstr "Барлық өрістерді дұрыс толтырыңыз."

@@ -2,7 +2,7 @@
   width: 100%;
   margin: 2rem auto;
   padding: 2rem;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   background-color: #fff;
 
   h1{
@@ -24,7 +24,7 @@
     width: 100%;
     padding: .5rem 1rem;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: .25rem;
+    border-radius: 1rem;
     outline: none;
     transition: border-color 0.2s;
 
@@ -42,7 +42,7 @@
   width: 100%;
   display: block;
   padding: .6rem 1rem;
-  border-radius: .25rem;
+  border-radius: 1rem;
   text-transform: uppercase;
   text-align: center;
   transition: background 0.2s;
@@ -100,7 +100,7 @@
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   background-color: #fff;
 
   h1 {
