@@ -32,6 +32,22 @@
           {{ _("Зарегистрируйтесь, чтобы участвовать") }}
         </a>
       {% endif %}
+
+      {% if user.is_superuser %}
+        <div class="admin-only-section" style="border: 1px dashed #red; padding: 10px;">
+            <h4>Список участников:</h4>
+            <ul>
+                {% for participant in page.participants.all %}
+                    <li>
+                        {{ participant.first_name }} {{ participant.last_name }}
+                        ({{ participant.phone }})
+                    </li>
+                {% empty %} 
+                    <li>На это событие пока никто не записался.</li>
+                {% endfor %}
+            </ul>
+        </div>
+      {% endif %}
     </div>
 
     <aside class="post-aside">
