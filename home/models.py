@@ -94,7 +94,7 @@ class CourseIndexPage(Page):
 
 class EventPage(Page, ContentMixin):
     date = models.DateTimeField(blank=True, null=True)
-    participants = models.ManyToManyField(CustomUser, related_name="events", blank=True)
+    participants_old = models.ManyToManyField(CustomUser, related_name="events", blank=True)
     content_panels = Page.content_panels + [
         FieldPanel("title"),
         FieldPanel("preview"),
