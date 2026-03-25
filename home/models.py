@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 from wagtail.models import Page
 from wagtail.fields import StreamField
+from wagtail.admin.panels import FieldPanel
 from wagtail.blocks import RichTextBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
@@ -93,13 +94,26 @@ class CourseIndexPage(Page):
 
 class EventPage(Page, ContentMixin):
     date = models.DateTimeField(blank=True, null=True)
-    participants = models.ManyToManyField(CustomUser, related_name="Participants", blank=True)
-    content_panels = Page.content_panels + ["title", "preview", "description", "body"]
+    participants = models.ManyToManyField(CustomUser, related_name="events", blank=True)
+    content_panels = Page.content_panels + [
+        FieldPanel("title"),
+        FieldPanel("preview"),
+        FieldPanel("description"),
+        FieldPanel("body")
+    ]
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["latest_posts"] = get_latest_posts(self, EventPage)
         context["event_id"] = self.id
         return context
+    
+class EventParticipant(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    event = models.ForeignKey(EventPage, on_delete=models.CASCADE)
+    is_attended = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        unique_together = ("user", "event")
 
 class NewsPage(Page, ContentMixin):
     content_panels = Page.content_panels + ["title", "preview", "description", "body"]
