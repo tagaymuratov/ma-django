@@ -94,7 +94,7 @@ class CourseIndexPage(Page):
 class EventPage(Page, ContentMixin):
     date = models.DateTimeField(blank=True, null=True)
     participants = models.ManyToManyField(CustomUser, related_name="Participants", blank=True)
-    content_panels = Page.content_panels + ["title", "preview", "description", "body"]
+    content_panels = Page.content_panels + ["title", "preview", "description", "body", "participants"]
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["latest_posts"] = get_latest_posts(self, EventPage)
