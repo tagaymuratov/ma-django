@@ -6,7 +6,10 @@ from home.models import EventPage, EventParticipant
 @login_required
 def register_for_event(request, event_id):
     event = EventPage.objects.get(id=event_id)
-    event.participants.add(request.user)
+    EventParticipant.objects.get_or_create(
+        event=event,
+        user=request.user
+    )
     return redirect(event.url)
 
 def mark_attendance(request, event_id, user_id):

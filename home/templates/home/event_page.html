@@ -39,8 +39,9 @@
             <ul>
                 {% for record in page.eventparticipant_set.all %}
                     <li>
-                        {{ record.user.first_name }} {{ record.user.last_name }} ({{ record.user.phone }})
-                        
+                        <div class="aos-group">
+                          {{ record.user.first_name }} {{ record.user.last_name }} ({{ record.user.phone }})
+                        </div>
                         <form method="post" action="{% url 'home:mark_attendance' page.id record.user.id %}">
                             {% csrf_token %}
 
