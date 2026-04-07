@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:22+0000\n"
+"POT-Creation-Date: 2026-04-07 00:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,49 +18,56 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: home/models.py:109 home/templates/home/home_page.html:23
+#: home/models.py:147 home/templates/home/home_page.html:23
 msgid "Последние новости"
 msgstr "Соңғы жаңалықтар"
 
-#: home/models.py:110 home/templates/home/home_page.html:24
+#: home/models.py:148 home/templates/home/home_page.html:24
 msgid "Больше новостей"
 msgstr "Көбірек жаңалықтар"
 
-#: home/models.py:118
+#: home/models.py:156
 msgid "Последние подкасты"
 msgstr "Соңғы подкасттар"
 
-#: home/models.py:119 home/templates/home/home_page.html:82
+#: home/models.py:157 home/templates/home/home_page.html:82
 msgid "Больше подкастов"
 msgstr "Көбірек подкасттар"
 
-#: home/models.py:127
+#: home/models.py:165
 msgid "Последние курсы"
 msgstr "Соңғы курстар"
 
-#: home/models.py:128
+#: home/models.py:166
 msgid "Больше курсов"
 msgstr "Көбірек курстар"
 
+#: home/templates/home/event_page.html:18
+msgid "Программа"
+msgstr "Бағдарлама"
+
 #: home/templates/home/event_page.html:25
-msgid "Вы уже зарегистрированы на это событие"
-msgstr "Сіз бұл іс-шараға тіркеліп қойғансыз"
+#, fuzzy
+#| msgid "Здравствуйте, "
+msgid "Вы участвуете"
+msgstr "Сіз қатысасыз"
 
 #: home/templates/home/event_page.html:27
+#: home/templates/home/event_page.html:32
 msgid "Принять участие"
 msgstr "Қатысу"
 
-#: home/templates/home/event_page.html:32
+#: home/templates/home/event_page.html:43
 #, fuzzy
-#| msgid "Зарегистрироваться"
-msgid "Зарегистрируйтесь, чтобы участвовать"
-msgstr "Қатысу үшін тіркеліңіз"
+#| msgid "Все мероприятия"
+msgid "Спонсоры мероприятия:"
+msgstr "Іс-шара демеушілері:"
 
-#: home/templates/home/event_page.html:38
+#: home/templates/home/event_page.html:85
 msgid "Последние события"
 msgstr "Соңғы іс-шаралар"
 
-#: home/templates/home/event_page.html:49
+#: home/templates/home/event_page.html:96
 msgid "Больше событий"
 msgstr "Көбірек іс-шаралар"
 
@@ -98,7 +105,9 @@ msgstr "КІРУ"
 
 #: main/templates/base.html:115
 msgid "ОО Ассоциация педиатров города Астаны © 2026г. Все права защищены."
-msgstr "Астана қаласының педиатрлар қауымдастығы ҚБ © 2026ж. Барлық құқықтар қорғалған."
+msgstr ""
+"Астана қаласының педиатрлар қауымдастығы ҚБ © 2026ж. Барлық құқықтар "
+"қорғалған."
 
 #: users/forms.py:16
 msgid "Имя"
@@ -213,3 +222,11 @@ msgstr "Менде аккаунт бар"
 #: users/views.py:23
 msgid "Заполните все поля корректно."
 msgstr "Барлық өрістерді дұрыс толтырыңыз."
+
+#~ msgid "Вы уже зарегистрированы на это событие"
+#~ msgstr "Сіз бұл іс-шараға тіркеліп қойғансыз"
+
+#, fuzzy
+#~| msgid "Зарегистрироваться"
+#~ msgid "Зарегистрируйтесь, чтобы участвовать"
+#~ msgstr "Қатысу үшін тіркеліңіз"

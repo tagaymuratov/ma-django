@@ -5,12 +5,13 @@ from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.translation import gettext_lazy as _
 
-from wagtail.models import Page
+from wagtail.models import Page, Orderable
+from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.fields import StreamField
-from wagtail.admin.panels import FieldPanel
 from wagtail.blocks import RichTextBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
+from modelcluster.fields import ParentalKey
 
 from home.blocks import ButtonBlock
 from users.models import CustomUser
@@ -92,16 +93,38 @@ class CourseIndexPage(Page):
         context = super().get_context(request)
         return get_index_context(context, CoursePage, request, self)
 
+class EventSponsorsGallery(Orderable):
+    page = ParentalKey("EventPage", related_name="sponsors_gallery")
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        related_name="+",
+        verbose_name=("Логотип спонсора")
+    )
+    panels = [FieldPanel("image"),]
+
 class EventPage(Page, ContentMixin):
     date = models.DateTimeField(blank=True, null=True)
-    participants_old = None
+    #participants_old = None
     participants = models.ManyToManyField(CustomUser, through="EventParticipant", related_name="events", blank=True)
+    document = models.ForeignKey(
+        'wagtaildocs.Document', 
+        blank=True, null=True, 
+        on_delete=models.SET_NULL, 
+        related_name="+", 
+        verbose_name="Документ для скачивания"
+    )   
     content_panels = Page.content_panels + [
         FieldPanel("title"),
         FieldPanel("preview"),
         FieldPanel("description"),
-        FieldPanel("body")
+        FieldPanel("document"),
+        FieldPanel("body"),
+        InlinePanel("sponsors_gallery", label="Cпонсоры мероприятия")
     ]
+    
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["latest_posts"] = get_latest_posts(self, EventPage)
