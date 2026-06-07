@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, get_user_model, authenticate
+from django.contrib.auth import authenticate, get_user_model
 from django.utils.html import strip_tags
 from django.core.validators import RegexValidator
 from django.utils.translation import gettext_lazy as _

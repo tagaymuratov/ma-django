@@ -1,11 +1,14 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from django.utils.text import get_valid_filename
 from urllib.parse import quote
 
 from home.models import EventPage, EventParticipant
 
+def event_page(request, event_id):
+    event = get_object_or_404(EventPage, id=event_id)
+    return render(request, "home/event_page.html", {"page": event})
 
 @login_required
 def get_excel_report(request, event_id):

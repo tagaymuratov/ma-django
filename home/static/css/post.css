@@ -215,3 +215,78 @@
   gap: 1rem;
   margin-bottom: 2rem;
 }
+
+.comment-section{
+  margin-top: 3rem;
+  color:#000;
+
+  a{
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  h1{
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+  textarea{
+    width: 100%;
+    resize: none;
+    border:none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    padding: 0 0 .5rem 0;
+    font-size: 1rem;
+    background-color: transparent;
+    margin-bottom: .25rem;
+    font-family: inherit;
+    &:focus{
+      border-bottom: 2px solid black;
+    }
+  }
+  button{
+    margin-left: auto;
+    display: none;
+    padding: .5rem 1rem;
+    font-weight: 500;
+  }
+}
+
+.comment{
+  display: flex;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+}
+
+.comment-name{
+  font-size: .875rem;
+  font-weight: 500;
+}
+
+.comment-date{
+  font-size: .875rem;
+  color: #666;
+}
+
+.comment-badge{
+  background-color: #000;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.comment-content{
+  padding: .5rem 0;
+}
+
+.comment-reply-link{
+  font-size: .875rem;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover{
+    text-decoration: underline;
+  }
+}

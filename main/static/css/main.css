@@ -1,6 +1,7 @@
 :root{
   --hover-link-color: rgba(0, 0, 0, 0.066);
   --hover-blue: rgba(219, 234, 254, 1);
+  --kzblue:#007bff;
 }
 
 .kzglass {
@@ -15,6 +16,10 @@
   &:hover{
     text-decoration: underline;
   }
+}
+
+.hidden{
+  display: none;
 }
 
 html, body {
@@ -33,6 +38,7 @@ html, body {
 *,
 *:before,
 *:after {
+  /*font-family: 'Google Sans', sans-serif;*/
   box-sizing: inherit;
   margin: 0;
   padding: 0;

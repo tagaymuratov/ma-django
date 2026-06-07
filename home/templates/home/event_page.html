@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags i18n %}
+{% load static wagtailcore_tags wagtailimages_tags i18n comment_tags comments comments_xtd%}
 {% block body_class %}{% endblock %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/post.css' %}">
+
 {% endblock extra_css %}
 {% block content %}
 
@@ -80,6 +81,39 @@
             <a href="{% url 'home:get_excel_report' page.id %}" class="post-btn ">Скачать Excel отчет</a>
         </div>
       {% endif %}
+
+      <div class="comment-section">
+        {% get_comment_count for page as comment_count %}
+        <h1>{{ comment_count|ru_comments_plural }}</h1>
+
+        {% if page.allow_comments %}
+          {% if user.is_authenticated %}
+            <div class="comment-add">
+              {% get_comment_form for page as form %}
+                <form action="{% comment_form_target %}" method="POST" id="yt-comment-form" class="">
+                  {% csrf_token %}
+                  {{ form.content_type }}
+                  {{ form.object_pk }}
+                  {{ form.timestamp }}
+                  {{ form.security_hash }}
+                  <div class="hidden">{{ form.honeypot }}</div>
+                  <input type="hidden" name="name" id="id_name" value="{{ user.last_name }} {{ user.first_name }}">
+                  <input type="hidden" name="email" id="id_email" value="{{ user.email }}">
+                  <input type="hidden" name="next" value="{{ request.path }}" />
+                  <textarea name="comment" id="id_comment" required rows="1" 
+                  placeholder="Введите комментарий" oninput="autoResize(this)"></textarea>
+                  <button type="submit" name="post" value="post" id="comment-submit-btn" class="post-btn">Оставить комментарий</button>
+                </form>
+            </div>
+          {% else %}
+            <p><a href="{% url 'users:login' %}?next={% url 'home:event' page.id %}">Войдите, чтобы оставить комментарий.</a></p>
+          {% endif %}
+        {% endif %}
+
+        {% if comment_count %}
+          {% render_xtdcomment_tree for page %}
+        {% endif %}
+      </div>
     </div>
 
     <aside class="post-aside">
@@ -100,3 +134,7 @@
 </section>
 
 {% endblock content %}
+
+{% block extra_js %}
+<script src="{% static 'js/post_page.js' %}" defer></script>
+{% endblock %}

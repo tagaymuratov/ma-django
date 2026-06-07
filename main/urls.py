@@ -17,6 +17,7 @@ urlpatterns = [
     path("search/", search_views.search, name="search"),
     path("users/", include("users.urls", namespace="users")),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('comments/', include('django_comments_xtd.urls')),
 ]
 
 if settings.DEBUG:

@@ -31,6 +31,9 @@ INSTALLED_APPS = [
     "users",
     "home",
     "search",
+    'django_comments_xtd',
+    'django_comments',
+    'django.contrib.sites',
     "wagtail_localize",
     #"wagtail.locales",
     "wagtail_localize.locales",
@@ -57,6 +60,23 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+SITE_ID = 1
+COMMENTS_APP = 'django_comments_xtd'
+COMMENTS_XTD_MAX_THREAD_LEVEL = 0
+COMMENTS_XTD_CONFIRM_EMAIL = False
+COMMENTS_XTD_CONFIRM_POST_BY_USER = False
+COMMENTS_BANNED_USERS_CAN_REPOST = False
+COMMENTS_XTD_PUBLISH_OR_WITHHOLD_ON_MODERATION = False
+COMMENTS_XTD_ALLOW_BLANK_USER_EMAIL = True
+COMMENTS_XTD_FROM_EMAIL = "noreply@example.com"
+COMMENTS_XTD_POST_LIST_URL = None
+
+EMAIL_HOST = "smtp.mail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = ''
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

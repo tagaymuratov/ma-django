@@ -107,8 +107,8 @@ class EventSponsorsGallery(Orderable):
 
 class EventPage(Page, ContentMixin):
     date = models.DateTimeField(blank=True, null=True)
-    #participants_old = None
     participants = models.ManyToManyField(CustomUser, through="EventParticipant", related_name="events", blank=True)
+    allow_comments = models.BooleanField(default=True, verbose_name="Разрешить комментарии")
     document = models.ForeignKey(
         'wagtaildocs.Document', 
         blank=True, null=True, 
@@ -122,7 +122,8 @@ class EventPage(Page, ContentMixin):
         FieldPanel("description"),
         FieldPanel("document"),
         FieldPanel("body"),
-        InlinePanel("sponsors_gallery", label="Cпонсоры мероприятия")
+        InlinePanel("sponsors_gallery", label="Cпонсоры мероприятия"),
+        FieldPanel("allow_comments"),
     ]
     
     def get_context(self, request, *args, **kwargs):
