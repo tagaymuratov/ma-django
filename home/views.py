@@ -1,6 +1,8 @@
+import re
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils.text import get_valid_filename
 from urllib.parse import quote
 
@@ -15,11 +17,13 @@ def get_excel_report(request, event_id):
     import openpyxl
 
     event = get_object_or_404(EventPage, id=event_id)
+    title = re.sub(r"[\\/*?:\[\]]", "_", event.title)
+    title = title[:31]
     participants_records = EventParticipant.objects.filter(event=event).select_related('user')
 
     wb = openpyxl.Workbook()
     ws = wb.active
-    ws.title = event.title
+    ws.title = title
     ws.append([
         "Фамилия", "Имя", "Email", "Город", "Телефон", "ИИН", "Место работы", "Специальность", 'Посетил мероприятие'
     ])
@@ -39,9 +43,7 @@ def get_excel_report(request, event_id):
             attendance_status
         ])
 
-    safe_title = get_valid_filename(event.title)
-    if len(safe_title) > 150:
-        safe_title = safe_title[:150]
+    safe_title = get_valid_filename(title)
     filename = f"{safe_title}.xlsx"
 
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
@@ -58,6 +60,11 @@ def register_for_event(request, event_id):
         user=request.user
     )
     return redirect(event.url)
+
+def get_participants_count(request, event_id):
+    event = get_object_or_404(EventPage, id=event_id)
+    count = event.participants.count() + event.participants_add_counter
+    return JsonResponse({"count": count})
 
 def mark_attendance(request, event_id, user_id):
     record = get_object_or_404(

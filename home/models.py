@@ -108,6 +108,7 @@ class EventSponsorsGallery(Orderable):
 class EventPage(Page, ContentMixin):
     date = models.DateTimeField(blank=True, null=True)
     participants = models.ManyToManyField(CustomUser, through="EventParticipant", related_name="events", blank=True)
+    participants_add_counter = models.IntegerField(default=0)
     allow_comments = models.BooleanField(default=True, verbose_name="Разрешить комментарии")
     document = models.ForeignKey(
         'wagtaildocs.Document', 
@@ -122,6 +123,7 @@ class EventPage(Page, ContentMixin):
         FieldPanel("description"),
         FieldPanel("document"),
         FieldPanel("body"),
+        FieldPanel("participants_add_counter"),
         InlinePanel("sponsors_gallery", label="Cпонсоры мероприятия"),
         FieldPanel("allow_comments"),
     ]

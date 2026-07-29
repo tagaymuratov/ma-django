@@ -33,6 +33,8 @@
             {{ _("Принять участие") }}
           </a>
         {% endif %}
+
+        <div class="post-btn-disabled">Участников: <span id="total-participants" data-page-id="{{ page.id }}">{{ page.participants.all|length|add:page.participants_add_counter }}</span></div>
       </div>
       <div class="post-content">
         {% for block in page.body %}
@@ -137,4 +139,22 @@
 
 {% block extra_js %}
 <script src="{% static 'js/post_page.js' %}" defer></script>
+<script>
+  const counterSpan = document.getElementById('total-participants');
+  const pageId = counterSpan.dataset.pageId;
+  async function updateParticipantsCount() {
+    try {
+      const response = await fetch(`/home/get_participants_count/${pageId}/`);
+      if (response.ok) {
+        const data = await response.json();
+        if (counterSpan.textContent !== String(data.count)) {
+          counterSpan.textContent = data.count;
+        }
+      }
+    } catch (error) {
+      console.error('Ошибка при обновлении счетчика:', error);
+    }
+  }
+  setInterval(updateParticipantsCount, 6000);
+</script>
 {% endblock %}
