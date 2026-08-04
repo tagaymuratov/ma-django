@@ -108,7 +108,12 @@ class EventSponsorsGallery(Orderable):
 class EventPage(Page, ContentMixin):
     date = models.DateTimeField(blank=True, null=True)
     participants = models.ManyToManyField(CustomUser, through="EventParticipant", related_name="events", blank=True)
-    participants_add_counter = models.IntegerField(default=0)
+    participants_online = models.ManyToManyField(CustomUser, through="EventParticipantsOnline", related_name="events_online", blank=True)
+    stream = StreamField([
+        ('embedblock', EmbedBlock(label="Youtube", template="blocks/embed_block.html")),
+    ], blank=True, null=True, verbose_name="Трансляция")
+    stream_counter_available = models.BooleanField(default=False, verbose_name="Счетчик участников трансляции")
+    participants_add_counter = models.IntegerField(default=0, verbose_name="Количество участников, добавляемое к счетчику трансляции")
     allow_comments = models.BooleanField(default=True, verbose_name="Разрешить комментарии")
     document = models.ForeignKey(
         'wagtaildocs.Document', 
@@ -121,9 +126,11 @@ class EventPage(Page, ContentMixin):
         FieldPanel("title"),
         FieldPanel("preview"),
         FieldPanel("description"),
+        FieldPanel("stream"),
+        FieldPanel("stream_counter_available"),
+        FieldPanel("participants_add_counter"),
         FieldPanel("document"),
         FieldPanel("body"),
-        FieldPanel("participants_add_counter"),
         InlinePanel("sponsors_gallery", label="Cпонсоры мероприятия"),
         FieldPanel("allow_comments"),
     ]
@@ -141,6 +148,13 @@ class EventParticipant(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     class Meta:
         unique_together = ("user", "event")
+
+class EventParticipantsOnline(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    event = models.ForeignKey(EventPage, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+            unique_together = ("user", "event")
 
 class NewsPage(Page, ContentMixin):
     content_panels = Page.content_panels + ["title", "preview", "description", "body"]

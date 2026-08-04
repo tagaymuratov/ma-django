@@ -6,7 +6,7 @@ from django.http import HttpResponse, JsonResponse
 from django.utils.text import get_valid_filename
 from urllib.parse import quote
 
-from home.models import EventPage, EventParticipant
+from home.models import EventPage, EventParticipant, EventParticipantsOnline
 
 def event_page(request, event_id):
     event = get_object_or_404(EventPage, id=event_id)
@@ -61,9 +61,23 @@ def register_for_event(request, event_id):
     )
     return redirect(event.url)
 
+@login_required
+def register_for_event_online(request, event_id):
+    event = EventPage.objects.get(id=event_id)
+    EventParticipantsOnline.objects.get_or_create(
+        event=event,
+        user=request.user
+    )
+    return redirect(event.url)
+
 def get_participants_count(request, event_id):
     event = get_object_or_404(EventPage, id=event_id)
     count = event.participants.count() + event.participants_add_counter
+    return JsonResponse({"count": count})
+
+def get_participants_online_count(request, event_id):
+    event = get_object_or_404(EventPage, id=event_id)
+    count = event.participants_online.count() + event.participants_add_counter
     return JsonResponse({"count": count})
 
 def mark_attendance(request, event_id, user_id):

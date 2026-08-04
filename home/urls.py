@@ -5,8 +5,10 @@ app_name = "home"
 
 urlpatterns = [
   path("get_participants_count/<int:event_id>/", views.get_participants_count, name="get_participants_count"),
+  path("get_participants_online_count/<int:event_id>/", views.get_participants_online_count, name="get_participants_online_count"),
   path("get_excel_report/<int:event_id>/", views.get_excel_report, name="get_excel_report"),
   path("register_for_event/<int:event_id>/", views.register_for_event, name="register_for_event"),
+  path("register_for_event_online/<int:event_id>/", views.register_for_event_online, name="register_for_event_online"),
   path("event/<int:event_id>/attend/<int:user_id>/", views.mark_attendance, name="mark_attendance"),
   path("event/<int:event_id>/", views.event_page, name="event"),
 ]

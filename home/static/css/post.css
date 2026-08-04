@@ -28,6 +28,7 @@
   height: 0;
   overflow: hidden;
   max-width: 100%;
+  margin-bottom: 1rem;
 }
 
 .video-container iframe {

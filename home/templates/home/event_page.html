@@ -28,14 +28,38 @@
               <button type="submit" class="post-btn">{{ _("Принять участие") }}</button>
             {% endif %}
           </form>
+          <form action="{% url 'home:register_for_event_online' page.id %}" method="post">
+            {% csrf_token %}
+            {% if user in page.participants_online.all %}
+            {% else %}
+              <button type="submit" class="post-btn">{{ _("Смотреть онлайн") }}</button>
+            {% endif %}
+          </form>
         {% else %}
           <a href="{% url 'users:register' %}?next={% url 'home:register_for_event' page.id %}" class="post-btn">
             {{ _("Принять участие") }}
           </a>
+          <a href="{% url 'users:register' %}?next={% url 'home:register_for_event_online' page.id %}" class="post-btn">
+            {{ _("Смотреть онлайн") }}
+          </a>
         {% endif %}
 
-        <div class="post-btn-disabled">Участников: <span id="total-participants" data-page-id="{{ page.id }}">{{ page.participants.all|length|add:page.participants_add_counter }}</span></div>
       </div>
+
+      {% if user in page.participants_online.all %}
+        <div class="post-content">
+          {% for block in page.stream %}
+            {% include_block block %}
+          {% endfor %}
+        </div>
+        
+        {% if page.stream_counter_available %}
+          <div class="event-inline-btns">
+            <div class="post-btn-disabled">Зрителей: <span id="total-participants" data-page-id="{{ page.id }}">{{ page.participants_online.all|length|add:page.participants_add_counter }}</span></div>
+          </div>
+        {% endif %}
+      {% endif %}
+
       <div class="post-content">
         {% for block in page.body %}
           {% include_block block %}
@@ -155,6 +179,6 @@
       console.error('Ошибка при обновлении счетчика:', error);
     }
   }
-  setInterval(updateParticipantsCount, 6000);
+  setInterval(updateParticipantsCount, 60000);
 </script>
 {% endblock %}
