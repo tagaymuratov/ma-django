@@ -28,20 +28,23 @@
               <button type="submit" class="post-btn">{{ _("Принять участие") }}</button>
             {% endif %}
           </form>
-          <form action="{% url 'home:register_for_event_online' page.id %}" method="post">
-            {% csrf_token %}
-            {% if user in page.participants_online.all %}
-            {% else %}
-              <button type="submit" class="post-btn">{{ _("Смотреть онлайн") }}</button>
-            {% endif %}
-          </form>
+          {% if page.stream %}
+            <form action="{% url 'home:register_for_event_online' page.id %}" method="post">
+              {% csrf_token %}
+              {% if user not in page.participants_online.all %}
+                <button type="submit" class="post-btn">{{ _("Смотреть онлайн") }}</button>
+              {% endif %}
+            </form>
+          {% endif %}
         {% else %}
           <a href="{% url 'users:register' %}?next={% url 'home:register_for_event' page.id %}" class="post-btn">
             {{ _("Принять участие") }}
           </a>
-          <a href="{% url 'users:register' %}?next={% url 'home:register_for_event_online' page.id %}" class="post-btn">
-            {{ _("Смотреть онлайн") }}
-          </a>
+          {% if page.stream %}
+            <a href="{% url 'users:register' %}?next={% url 'home:register_for_event_online' page.id %}" class="post-btn">
+              {{ _("Смотреть онлайн") }}
+            </a>
+          {% endif %}
         {% endif %}
 
       </div>
