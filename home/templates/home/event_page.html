@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags i18n comment_tags comments comments_xtd%}
 {% block body_class %}{% endblock %}
-{% block extra_css %}
-  <link rel="stylesheet" href="{% static 'css/post.css' %}">
-
-{% endblock extra_css %}
+{% block extra_css %}{% endblock extra_css %}
 {% block content %}
 
 <section class="post-section">
@@ -168,20 +165,22 @@
 <script src="{% static 'js/post_page.js' %}" defer></script>
 <script>
   const counterSpan = document.getElementById('total-participants');
-  const pageId = counterSpan.dataset.pageId;
-  async function updateParticipantsCount() {
-    try {
-      const response = await fetch(`/home/get_participants_count/${pageId}/`);
-      if (response.ok) {
-        const data = await response.json();
-        if (counterSpan.textContent !== String(data.count)) {
-          counterSpan.textContent = data.count;
+  if(counterSpan){
+    const pageId = counterSpan.dataset.pageId;
+    async function updateParticipantsCount() {
+      try {
+        const response = await fetch(`/home/get_participants_count/${pageId}/`);
+        if (response.ok) {
+          const data = await response.json();
+          if (counterSpan.textContent !== String(data.count)) {
+            counterSpan.textContent = data.count;
+          }
         }
+      } catch (error) {
+        console.error('Ошибка при обновлении счетчика:', error);
       }
-    } catch (error) {
-      console.error('Ошибка при обновлении счетчика:', error);
     }
+    setInterval(updateParticipantsCount, 60000);
   }
-  setInterval(updateParticipantsCount, 60000);
 </script>
 {% endblock %}

@@ -16,7 +16,7 @@ class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(label=_("Имя"), max_length=30, required=True)
     last_name = forms.CharField(label=_("Фамилия"), max_length=30, required=True)
     city = forms.CharField(label=_("Город"), max_length=100, required=True)
-    phone = forms.CharField(label=_("Телефон"), max_length=18, required=True, validators=[RegexValidator(r'^(?:\+7|8)7\d{9}$', _('Введите корректный номер телефона.'))])
+    phone = forms.CharField(label=_("Телефон"), max_length=30, required=True)
     iin = forms.CharField(label=_("ИИН"), max_length=12, validators=[RegexValidator(r'^\d{12}$', _('Введите корректный ИИН.'))], required=False)
     work_place = forms.CharField(label=_("Место работы"), max_length=254, required=True)
     specialty = forms.CharField(label=_("Специальность"), max_length=200, required=True)
@@ -69,7 +69,7 @@ class CustomUserEditForm(UserEditForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
     city = forms.CharField(max_length=100, required=True, label=_("Город"))
-    phone = forms.CharField(max_length=12, required=True, validators=[RegexValidator(r'^\+\d{10,12}$', _('Введите корректный номер телефона.'))], label=_("Телефон"))
+    phone = forms.CharField(max_length=30, required=True, label=_("Телефон"))
     work_place = forms.CharField(max_length=254, required=True, label=_("Место работы"))
     specialty = forms.CharField(max_length=200, required=True, label=_("Специальность"))
 
