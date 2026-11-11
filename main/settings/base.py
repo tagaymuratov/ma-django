@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'anymail',
 ]
 
 SITE_ID = 1
@@ -72,11 +73,12 @@ COMMENTS_XTD_ALLOW_BLANK_USER_EMAIL = True
 COMMENTS_XTD_FROM_EMAIL = "noreply@example.com"
 COMMENTS_XTD_POST_LIST_URL = None
 
-EMAIL_HOST = "smtp.mail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-DEFAULT_FROM_EMAIL = ''
+EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
+
+ANYMAIL = {
+    "RESEND_API_KEY": os.environ.get("RESEND_API_KEY"),
+}
+DEFAULT_FROM_EMAIL = "noreply@apga.kz"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

@@ -1,0 +1,1 @@
+pip install "django-anymail[resend]"

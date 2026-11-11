@@ -125,3 +125,24 @@
     margin-bottom: 2rem;
   }
 }
+
+.twoLabels{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p{
+    margin: 0;
+  }
+
+  a{
+    display:block;
+    white-space: nowrap;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: .875rem;
+    &:hover {
+      text-decoration: underline;
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+}
