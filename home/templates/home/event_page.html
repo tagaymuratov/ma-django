@@ -3,7 +3,6 @@
 {% block body_class %}{% endblock %}
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/post.css' %}">
-
 {% endblock extra_css %}
 {% block content %}
 
@@ -29,12 +28,12 @@
             {% endif %}
           </form>
           {% if page.stream %}
-            <form action="{% url 'home:register_for_event_online' page.id %}" method="post">
-              {% csrf_token %}
-              {% if user not in page.participants_online.all %}
+            {% if user not in page.participants_online.all %}
+              <form action="{% url 'home:register_for_event_online' page.id %}" method="post">
+                {% csrf_token %}
                 <button type="submit" class="post-btn">{{ _("Смотреть онлайн") }}</button>
-              {% endif %}
-            </form>
+              </form>
+            {% endif %}
           {% endif %}
         {% else %}
           <a href="{% url 'users:register' %}?next={% url 'home:register_for_event' page.id %}" class="post-btn">
@@ -47,7 +46,18 @@
           {% endif %}
         {% endif %}
 
+        {% if page.additional_info %}
+          <div class="post-btn" id="additional-info-btn">Дополнительная информация</div>
+        {% endif %}
       </div>
+
+      {% if page.additional_info %}
+        <div class="additional-info-section hidden" id="additional-info-section">
+          {% for block in page.additional_info %}
+            {% include_block block %}
+          {% endfor %}
+        </div>
+      {% endif %}
 
       {% if user in page.participants_online.all %}
         <div class="post-content">
@@ -166,24 +176,4 @@
 
 {% block extra_js %}
 <script src="{% static 'js/post_page.js' %}" defer></script>
-<script>
-  const counterSpan = document.getElementById('total-participants');
-  if(counterSpan){
-    const pageId = counterSpan.dataset.pageId;
-    async function updateParticipantsCount() {
-      try {
-        const response = await fetch(`/home/get_participants_count/${pageId}/`);
-        if (response.ok) {
-          const data = await response.json();
-          if (counterSpan.textContent !== String(data.count)) {
-            counterSpan.textContent = data.count;
-          }
-        }
-      } catch (error) {
-        console.error('Ошибка при обновлении счетчика:', error);
-      }
-    }
-    setInterval(updateParticipantsCount, 60000);
-  }
-</script>
 {% endblock %}

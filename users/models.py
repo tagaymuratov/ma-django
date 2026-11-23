@@ -3,16 +3,16 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.html  import strip_tags
 
 class CustomUserManager(BaseUserManager):
-  def create_user(self, email, first_name, last_name, city, phone, iin, work_place, specialty, password=None, **extra_fields):
+  def create_user(self, email, first_name, last_name, patronymic, city, phone, iin, work_place, specialty, password=None, **extra_fields):
     if not email:
       raise ValueError("The Email field must be set")
     email = self.normalize_email(email)
-    user = self.model(email=email, first_name=first_name, last_name=last_name, city=city, phone=phone, iin=iin, work_place=work_place, specialty=specialty,**extra_fields)
+    user = self.model(email=email, first_name=first_name, last_name=last_name, patronymic=patronymic, city=city, phone=phone, iin=iin, work_place=work_place, specialty=specialty,**extra_fields)
     user.set_password(password)
     user.save(using=self._db)
     return user
   
-  def create_superuser(self, email, first_name, last_name, city, phone, iin, work_place, specialty, password=None, **extra_fields):
+  def create_superuser(self, email, first_name, last_name, patronymic, city, phone, iin, work_place, specialty, password=None, **extra_fields):
     extra_fields.setdefault("is_staff", True)
     extra_fields.setdefault("is_superuser", True)
 
@@ -21,12 +21,13 @@ class CustomUserManager(BaseUserManager):
     if extra_fields.get("is_superuser") is not True:
       raise ValueError("Superuser must have is_superuser=True.")
 
-    return self.create_user(email, first_name, last_name, city, phone, iin, work_place, specialty, password, **extra_fields)
+    return self.create_user(email, first_name, last_name, patronymic, city, phone, iin, work_place, specialty, password, **extra_fields)
 
 class CustomUser(AbstractUser):
     email = models.EmailField(max_length=254 ,unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    patronymic = models.CharField(max_length=30, null=True, blank=True)
     city = models.CharField(max_length=100)
     phone = models.CharField(max_length=30, unique=True)
     iin = models.CharField(max_length=12, null=True, blank=True)
@@ -42,7 +43,7 @@ class CustomUser(AbstractUser):
       return self.email
     
     def clean(self):
-      for field in ["first_name", "last_name", "city", "work_place", "specialty"]:
+      for field in ["first_name", "last_name", "patronymic", "city", "work_place", "specialty"]:
         value = getattr(self, field, "")
         if value:
           setattr(self, field, strip_tags(value))

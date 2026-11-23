@@ -2,6 +2,9 @@
   margin:auto;
   max-width: 1200px;
   padding: 2rem;
+  @media (max-width: 600px) {
+    padding: 1rem;
+  }
 }
 
 .index-cards{

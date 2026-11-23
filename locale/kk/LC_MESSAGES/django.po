@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-07 00:25+0000\n"
+"POT-Creation-Date: 2026-11-11 20:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,56 +18,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: home/models.py:147 home/templates/home/home_page.html:23
+#: home/models.py:164 home/templates/home/home_page.html:23
 msgid "Последние новости"
 msgstr "Соңғы жаңалықтар"
 
-#: home/models.py:148 home/templates/home/home_page.html:24
+#: home/models.py:165 home/templates/home/home_page.html:24
 msgid "Больше новостей"
 msgstr "Көбірек жаңалықтар"
 
-#: home/models.py:156
+#: home/models.py:173
 msgid "Последние подкасты"
 msgstr "Соңғы подкасттар"
 
-#: home/models.py:157 home/templates/home/home_page.html:82
+#: home/models.py:174 home/templates/home/home_page.html:82
 msgid "Больше подкастов"
 msgstr "Көбірек подкасттар"
 
-#: home/models.py:165
+#: home/models.py:182
 msgid "Последние курсы"
 msgstr "Соңғы курстар"
 
-#: home/models.py:166
+#: home/models.py:183
 msgid "Больше курсов"
 msgstr "Көбірек курстар"
 
-#: home/templates/home/event_page.html:18
+#: home/templates/home/event_page.html:19
 msgid "Программа"
 msgstr "Бағдарлама"
 
-#: home/templates/home/event_page.html:25
-#, fuzzy
-#| msgid "Здравствуйте, "
+#: home/templates/home/event_page.html:26
 msgid "Вы участвуете"
 msgstr "Сіз қатысасыз"
 
-#: home/templates/home/event_page.html:27
-#: home/templates/home/event_page.html:32
+#: home/templates/home/event_page.html:28
+#: home/templates/home/event_page.html:41
 msgid "Принять участие"
 msgstr "Қатысу"
 
-#: home/templates/home/event_page.html:43
-#, fuzzy
-#| msgid "Все мероприятия"
+#: home/templates/home/event_page.html:35
+#: home/templates/home/event_page.html:45
+msgid "Смотреть онлайн"
+msgstr "Онлайн қарау"
+
+#: home/templates/home/event_page.html:73
 msgid "Спонсоры мероприятия:"
 msgstr "Іс-шара демеушілері:"
 
-#: home/templates/home/event_page.html:85
+#: home/templates/home/event_page.html:149
 msgid "Последние события"
 msgstr "Соңғы іс-шаралар"
 
-#: home/templates/home/event_page.html:96
+#: home/templates/home/event_page.html:160
 msgid "Больше событий"
 msgstr "Көбірек іс-шаралар"
 
@@ -109,6 +110,45 @@ msgstr ""
 "Астана қаласының педиатрлар қауымдастығы ҚБ © 2026ж. Барлық құқықтар "
 "қорғалған."
 
+#: main/templates/django_comments_xtd/comment.html:12
+msgid "Posted to "
+msgstr ""
+
+#: main/templates/django_comments_xtd/comment.html:16
+msgid "This comment has been removed."
+msgstr ""
+
+#: main/templates/django_comments_xtd/comment_tree.html:13
+msgid "модератор"
+msgstr ""
+
+#: main/templates/django_comments_xtd/comment_tree.html:20
+#, python-format
+msgid "A user has flagged this comment as inappropriate."
+msgid_plural "%(counter)s users have flagged this comment as inappropriate."
+msgstr[0] ""
+msgstr[1] ""
+
+#: main/templates/django_comments_xtd/comment_tree.html:24
+msgid "comment flagged"
+msgstr ""
+
+#: main/templates/django_comments_xtd/comment_tree.html:27
+msgid "flag comment"
+msgstr ""
+
+#: main/templates/django_comments_xtd/comment_tree.html:32
+msgid "remove comment"
+msgstr ""
+
+#: main/templates/django_comments_xtd/comment_tree.html:40
+msgid "Комментарий удален."
+msgstr ""
+
+#: main/templates/django_comments_xtd/comment_tree.html:53
+msgid "Ответить"
+msgstr ""
+
 #: users/forms.py:16
 msgid "Имя"
 msgstr "Аты"
@@ -124,10 +164,6 @@ msgstr "Қала"
 #: users/forms.py:19 users/forms.py:72
 msgid "Телефон"
 msgstr "Телефон"
-
-#: users/forms.py:19 users/forms.py:72
-msgid "Введите корректный номер телефона."
-msgstr "Дұрыс телефон нөмірін енгізіңіз."
 
 #: users/forms.py:20
 msgid "ИИН"
@@ -173,22 +209,85 @@ msgstr "Бұл аккаунт белсенді емес."
 msgid "Вход"
 msgstr "Кіру"
 
-#: users/templates/users/login.html:24
+#: users/templates/users/login.html:33
+#: users/templates/users/password_reset_complete.html:12
 msgid "Войти"
 msgstr "Кіру"
 
-#: users/templates/users/login.html:27
-#, python-format
+#: users/templates/users/login.html:36
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "            Если у вас нет аккаунта, <a href=\"%(url)s\" "
+#| "class=\"txtlink\">Зарегистрируйтесь</a>\n"
+#| "        "
 msgid ""
 "\n"
-"            Если у вас нет аккаунта, <a href=\"%(url)s\" "
-"class=\"txtlink\">Зарегистрируйтесь</a>\n"
+"            <p>Если у вас нет аккаунта, <a href=\"%(url)s\" "
+"class=\"txtlink\">Зарегистрируйтесь</a></p>\n"
 "        "
 msgstr ""
 "\n"
 "            Егер аккаунтыңыз болмаса, <a href=\"%(url)s\" "
 "class=\"txtlink\">Тіркеліңіз</a>\n"
 "        "
+
+#: users/templates/users/password_reset_complete.html:11
+msgid "Вы успешно изменили пароль и теперь можете войти в систему"
+msgstr ""
+
+#: users/templates/users/password_reset_complete.html:16
+#: users/templates/users/password_reset_confirm.html:24
+#: users/templates/users/password_reset_form.html:19
+msgid "Отправить"
+msgstr ""
+
+#: users/templates/users/password_reset_confirm.html:13
+#: users/templates/users/password_reset_form.html:11
+#, fuzzy
+#| msgid "Подтвердите пароль"
+msgid "Сброс пароля"
+msgstr "Құпия сөзді растаңыз"
+
+#: users/templates/users/password_reset_confirm.html:15
+#, fuzzy
+#| msgid "Подтвердите пароль"
+msgid "Новый пароль:"
+msgstr "Құпия сөзді растаңыз"
+
+#: users/templates/users/password_reset_confirm.html:20
+#, fuzzy
+#| msgid "Подтвердите пароль"
+msgid "Подтвердите пароль:"
+msgstr "Құпия сөзді растаңыз"
+
+#: users/templates/users/password_reset_confirm.html:29
+msgid ""
+"Эта ссылка для сброса пароля больше недействительна. Пожалуйста, запросите "
+"сброс заново."
+msgstr ""
+
+#: users/templates/users/password_reset_done.html:11
+msgid ""
+"Письмо с инструкциями по сбросу пароля было отправлено на вашу электронную "
+"почту. Если вы не получили письмо, пожалуйста, убедитесь, что вы ввели "
+"правильный адрес электронной почты, и проверьте папку со спамом."
+msgstr ""
+
+#: users/templates/users/password_reset_email.html:4
+#, python-format
+msgid ""
+"Вы получили это письмо, так как запросили сброс пароля для своей учетной "
+"записи на %(site_name)s."
+msgstr ""
+
+#: users/templates/users/password_reset_email.html:6
+msgid "Пожалуйста, перейдите по следующей ссылке и установите новый пароль:"
+msgstr ""
+
+#: users/templates/users/password_reset_form.html:14
+msgid "Электронная почта:"
+msgstr ""
 
 #: users/templates/users/profile.html:10
 msgid "Здравствуйте, "
@@ -222,6 +321,9 @@ msgstr "Менде аккаунт бар"
 #: users/views.py:23
 msgid "Заполните все поля корректно."
 msgstr "Барлық өрістерді дұрыс толтырыңыз."
+
+#~ msgid "Введите корректный номер телефона."
+#~ msgstr "Дұрыс телефон нөмірін енгізіңіз."
 
 #~ msgid "Вы уже зарегистрированы на это событие"
 #~ msgstr "Сіз бұл іс-шараға тіркеліп қойғансыз"

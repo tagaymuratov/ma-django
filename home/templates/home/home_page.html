@@ -40,7 +40,10 @@
 <section>
   <div class="home-section-top">
     <h1>{% translate "Мероприятия" %}</h1>
-    <a href="{{ events_link.url }}" class="txtlink">{% translate "Все мероприятия" %}</a>
+    <a href="{{ events_link.url }}" class="txtlink">
+      <span class="home-section-top-txt">{% translate "Все мероприятия" %}</span>
+      <span class="home-section-top-arrow">&gt;</span>
+    </a>
   </div>
   <div class="cards">
     {% for item in events %}
@@ -59,7 +62,10 @@
 <section>
   <div class="home-section-top">
     <h1>{% translate "Новые курсы" %}</h1>
-    <a href="{{ courses_link.url }}" class="txtlink">{% translate "Все курсы" %}</a>
+    <a href="{{ courses_link.url }}" class="txtlink">
+      <span class="home-section-top-txt">{% translate "Все курсы" %}</span>
+      <span class="home-section-top-arrow">&gt;</span>
+    </a>
   </div>
 
   <div class="cards">
@@ -79,7 +85,10 @@
 <section>
   <div class="home-section-top">
     <h1>{% translate "Подкасты" %}</h1>
-    <a href="{{ podcasts_link.url }}" class="txtlink">{% translate "Больше подкастов" %}</a>
+    <a href="{{ podcasts_link.url }}" class="txtlink">
+      <span class="home-section-top-txt">{% translate "Больше подкастов" %}</span>
+      <span class="home-section-top-arrow">&gt;</span>
+    </a>
   </div>
 
   <div class="cards">

@@ -24,6 +24,9 @@
     <p>{{ form.last_name.label_tag }}{{ form.last_name }}{% if form.last_name.errors %}
         {% for error in form.last_name.errors %}<span class="form-error">{{ error }}</span> 
         {% endfor %}{% endif %}</p>
+    <p>{{ form.patronymic.label_tag }}{{ form.patronymic }}{% if form.patronymic.errors %}
+        {% for error in form.patronymic.errors %}<span class="form-error">{{ error }}</span> 
+        {% endfor %}{% endif %}</p>
     <p>{{ form.city.label_tag }}{{ form.city }}{% if form.city.errors %}
         {% for error in form.city.errors %}<span class="form-error">{{ error }}</span> 
         {% endfor %}{% endif %}</p>

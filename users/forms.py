@@ -15,6 +15,7 @@ class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, max_length=254)
     first_name = forms.CharField(label=_("Имя"), max_length=30, required=True)
     last_name = forms.CharField(label=_("Фамилия"), max_length=30, required=True)
+    patronymic = forms.CharField(label=_("Отчество"), max_length=30, required=False)
     city = forms.CharField(label=_("Город"), max_length=100, required=True)
     phone = forms.CharField(label=_("Телефон"), max_length=30, required=True)
     iin = forms.CharField(label=_("ИИН"), max_length=12, validators=[RegexValidator(r'^\d{12}$', _('Введите корректный ИИН.'))], required=False)
@@ -25,7 +26,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("email", "first_name", "last_name", "city", "phone", "iin", "work_place", "specialty", "password1", "password2")
+        fields = ("email", "first_name", "last_name", "patronymic", "city", "phone", "iin", "work_place", "specialty", "password1", "password2")
 
     def clean_email(self):
       email = self.cleaned_data.get("email")
@@ -68,6 +69,7 @@ class CustomUserLoginForm(AuthenticationForm):
 class CustomUserEditForm(UserEditForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=30, required=True)
+    patronymic = forms.CharField(max_length=30, required=False, label=_("Отчество"))
     city = forms.CharField(max_length=100, required=True, label=_("Город"))
     phone = forms.CharField(max_length=30, required=True, label=_("Телефон"))
     work_place = forms.CharField(max_length=254, required=True, label=_("Место работы"))
@@ -75,11 +77,12 @@ class CustomUserEditForm(UserEditForm):
 
     class Meta:
         model = User
-        fields = ("email", "first_name", "last_name", "city", "phone", "iin", "work_place", "specialty")
+        fields = ("email", "first_name", "last_name", "patronymic", "city", "phone", "iin", "work_place", "specialty")
         widgets = {
             "email": forms.EmailInput(attrs={"readonly": "readonly"}),
             "first_name": forms.TextInput(),
             "last_name": forms.TextInput(),
+            "patronymic": forms.TextInput(),
             "city": forms.TextInput(),
             "phone": forms.TextInput(),
             "iin": forms.TextInput(attrs={"readonly": "readonly"}),
@@ -89,7 +92,7 @@ class CustomUserEditForm(UserEditForm):
     
     def clean(self):
         cleaned_data = super().clean()
-        for field in ["first_name", "last_name", "city", "work_place", "specialty"]:
+        for field in ["first_name", "last_name", "patronymic", "city", "work_place", "specialty"]:
             if cleaned_data.get(field):
                 cleaned_data[field] = strip_tags(cleaned_data[field])
         return cleaned_data
