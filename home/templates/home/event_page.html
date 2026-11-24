@@ -46,18 +46,10 @@
           {% endif %}
         {% endif %}
 
-        {% if page.additional_info %}
-          <div class="post-btn" id="additional-info-btn">Дополнительная информация</div>
+        {% if page.addinfo %}
+          <a href="{{ page.addinfo.url }}" class="post-btn" download>{{ _("Дополнительная информация") }}</a>
         {% endif %}
       </div>
-
-      {% if page.additional_info %}
-        <div class="additional-info-section hidden" id="additional-info-section">
-          {% for block in page.additional_info %}
-            {% include_block block %}
-          {% endfor %}
-        </div>
-      {% endif %}
 
       {% if user in page.participants_online.all %}
         <div class="post-content">

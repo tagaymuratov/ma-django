@@ -72,20 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setInterval(updateParticipantsCount, 60000);
   }
 
-  const additionalInfoBtn = document.getElementById('additional-info-btn');
-  if (additionalInfoBtn) {
-    additionalInfoBtn.addEventListener('click', function () {
-      const additionalInfoSection = document.getElementById('additional-info-section');
-      additionalInfoSection.classList.toggle('hidden');
-      if (additionalInfoSection.classList.contains('hidden')) {
-        additionalInfoBtn.textContent = 'Дополнительная информация';
-      } else {
-        additionalInfoBtn.textContent = 'Скрыть доп. информацию';
-        additionalInfoBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  }
-
 });
 
 function autoResize(textarea) {

@@ -121,12 +121,15 @@ class EventPage(Page, ContentMixin):
         on_delete=models.SET_NULL, 
         related_name="+", 
         verbose_name="Документ для скачивания"
-    )   
-    additional_info = StreamField([
-            ('rtfblock', RichTextBlock(features=[
-                "h1","h2","h3","ol","ul","hr","blockquote","superscript","subscript","strikethrough","bold","italic","link"
-            ], label="Текст")),
-        ], blank=True, null=True, verbose_name="Дополнительная информация")
+    )
+    addinfo = models.ForeignKey(
+        'wagtaildocs.Document', 
+        blank=True, null=True, 
+        on_delete=models.SET_NULL, 
+        related_name="+", 
+        verbose_name="Дополнительная информация"
+    ) 
+
     content_panels = Page.content_panels + [
         FieldPanel("title"),
         FieldPanel("preview"),
@@ -135,7 +138,7 @@ class EventPage(Page, ContentMixin):
         FieldPanel("stream_counter_available"),
         FieldPanel("participants_add_counter"),
         FieldPanel("document"),
-        FieldPanel("additional_info"),
+        FieldPanel("addinfo"),
         FieldPanel("body"),
         InlinePanel("sponsors_gallery", label="Cпонсоры мероприятия"),
         FieldPanel("allow_comments"),
